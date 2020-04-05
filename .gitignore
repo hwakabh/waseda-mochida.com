@@ -1,0 +1,7 @@
+venv/*
+*.pyc
+.DS_Store
+*.log
+.vscode/*
+settings.py
+db.sqlite3
