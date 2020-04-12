@@ -71,6 +71,13 @@ input, select, textarea {
   .br-pad {
     display: none;
   }
+  .message {
+    text-align: center;
+  }
+  .sp-message {
+    display: inline-block;
+    text-align: left;
+  }
 
   html {
     box-sizing: border-box;
@@ -2595,11 +2602,7 @@ input, select, textarea {
       .br-sp {
         display: block;
       }
-      .sp-message {
-        text-align: left;
-      }
-
-      body, p, input, textarea, select {
+      body, p, li, input, textarea, select {
         font-size: 11pt;
       }
 
