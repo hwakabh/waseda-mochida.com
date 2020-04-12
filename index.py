@@ -21,7 +21,7 @@ CACHE = {}
 if 'hwakabh' in gethostname():
     SERVER_URL = 'http://localhost:5000'
 else:
-    SERVER_URL = 'https://waseda-mochida.herokuapp.com/member/pay/confirm'
+    SERVER_URL = 'https://waseda-mochida.herokuapp.com/'
 
 api = LinePayApi(
     LINE_PAY_CHANNEL_ID,
