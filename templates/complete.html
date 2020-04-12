@@ -25,9 +25,17 @@
       </header>
 
 
-      <h3>LINE Pay で事前決済をする</h3>
-      <p>このサービスの説明</p>
-      <a href="/member/pay/request" class="image"><img src="/static/img/linepay.png" alt="" /></a>
+      <h3>Order ID : {{ result.info.orderId }}</h3>
+        <p>
+          transactionId: {{ result.info.transactionId }}<br>
+          purchase: {{ result.info.packages }}<br>
+          Payment Status Check Return Code: {{ result.returnCode }}<br>
+          Payment Status Check Return Message: {{ result.returnMessage }}<br>
+          Payment Details: {{ result.info.payment_details }}<br>
+          <br>
+          <!-- お金を払い戻すには以下のリンクをクリックしてください<br>
+          <a href="/member/pay/refund" target="_blank" rel="noopener noreferrer">払い戻し</a> -->
+        </p>
     </div>
   </section>
 
