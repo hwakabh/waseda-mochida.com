@@ -2595,6 +2595,9 @@ input, select, textarea {
       .br-sp {
         display: block;
       }
+      .sp-message {
+        text-align: left;
+      }
 
       body, p, input, textarea, select {
         font-size: 10pt;
