@@ -100,12 +100,14 @@ def linepay_request():
 # With this function, seller would be confirmed by LINE Pay API
 @app.route('/member/pay/confirm')
 def linepay_confirm():
+    print('\n>>>> Cached data: ')
+    print(CACHE)
     transaction_id = int(request.args.get('transactionId'))
     CACHE['transaction_id'] = transaction_id
     print('\n>>> Calling Confirm API with transaction: {}'.format(transaction_id))
     res = api.confirm(
         transaction_id=transaction_id,
-        amount=float(CACHE.get('amount', 0)),
+        amount=CACHE.get('amount', 1),
         currency=CACHE.get('currency', 'JPY')
     )
     print('\n>>> Responce from API ...')
