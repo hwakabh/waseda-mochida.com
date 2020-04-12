@@ -54,7 +54,8 @@ def member():
 @app.route('/member/pay/request')
 def linepay_request():
     order_id = str(uuid.uuid4())
-    amount = 1
+    # Python SDK would expected amount as float value
+    amount = 1.0
     currency = 'JPY'
     print('\n>>> Requesting to LINE Pay API for transaction reservation.')
     print('>>> Order ID: {}'.format(order_id))
@@ -70,7 +71,7 @@ def linepay_request():
       'packages': [
         {
           'id': 'package-999',
-          'amount': 1,
+          'amount': 1.0,
           'name': 'Sample package',
           'products': [
             {
@@ -107,7 +108,7 @@ def linepay_confirm():
     print('\n>>> Calling Confirm API with transaction: {}'.format(transaction_id))
     res = api.confirm(
         transaction_id=transaction_id,
-        amount=CACHE.get('amount', 1),
+        amount=float(CACHE.get('amount', 0.0)),
         currency=CACHE.get('currency', 'JPY')
     )
     print('\n>>> Responce from API ...')
