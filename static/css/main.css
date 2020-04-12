@@ -68,6 +68,9 @@ input, select, textarea {
   .br-sp {
     display: none;
   }
+  .br-pad {
+    display: none;
+  }
 
   html {
     box-sizing: border-box;
@@ -2584,6 +2587,9 @@ input, select, textarea {
 
     /* Basic */
       .narrow {
+        display: none;
+      }
+      .br-pad {
         display: none;
       }
       .br-sp {
