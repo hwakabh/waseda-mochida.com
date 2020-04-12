@@ -120,7 +120,7 @@ def linepay_confirm():
     res['transaction_id'] = transaction_id
     res['paymentStatusCheckReturnCode'] = check_result.get('returnCode', None)
     res['paymentStatusCheckReturnMessage'] = check_result.get('returnMessage', None)
-    res['payment_details'] = payment_details
+    res['payment_details'] = pay_detail
     return render_template('complete.html', result=res)
 
 
