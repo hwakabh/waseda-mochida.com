@@ -16,8 +16,12 @@ LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
 LINE_PAY_CHANNEL_SECRET = os.environ.get('LINE_PAY_CHANNEL_SECRET')
 LINE_PAY_IS_SANDBOX = False
 LINE_PAY_SANDBOX_URL = 'https://api-pay.line.me'
-SERVER_URL = gethostname()
 CACHE = {}
+
+if 'hwakabh' in gethostname():
+    SERVER_URL = 'http://localhost:5000'
+else:
+    SERVER_URL = 'https://waseda-mochida.herokuapp.com/member/pay/confirm'
 
 api = LinePayApi(
     LINE_PAY_CHANNEL_ID,
