@@ -4,6 +4,7 @@ from flask import send_from_directory
 from flask import request
 from linepay import LinePayApi
 
+from socket import gethostname
 import os
 import uuid
 
@@ -13,9 +14,9 @@ app = Flask(__name__)
 # LINE Pay API config and instanciate
 LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
 LINE_PAY_CHANNEL_SECRET = os.environ.get('LINE_PAY_CHANNEL_SECRET')
-LINE_PAY_IS_SANDBOX = True
-LINE_PAY_SANDBOX_URL = 'https://sandbox-api-pay.line.me'
-SERVER_URL = 'localhost:5000'
+LINE_PAY_IS_SANDBOX = False
+LINE_PAY_SANDBOX_URL = 'https://api-pay.line.me'
+SERVER_URL = gethostname()
 CACHE = {}
 
 api = LinePayApi(
