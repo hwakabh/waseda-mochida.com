@@ -65,6 +65,10 @@ input, select, textarea {
 
 /* Basic */
 
+  .br-sp {
+    display: none;
+  }
+
   html {
     box-sizing: border-box;
   }
@@ -2308,6 +2312,10 @@ input, select, textarea {
 
   @media screen and (min-width: 961px) and (max-width: 1320px) {
 
+    .br-pad {
+      display: none;
+    }
+
     /* Basic */
 
       body, input, textarea, select {
@@ -2575,9 +2583,15 @@ input, select, textarea {
   @media screen and (max-width: 736px) {
 
     /* Basic */
+      .narrow {
+        display: none;
+      }
+      .br-sp {
+        display: block;
+      }
 
-      body, input, textarea, select {
-        font-size: 14pt;
+      body, p, input, textarea, select {
+        font-size: 10pt;
       }
 
       h2 {
