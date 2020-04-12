@@ -108,7 +108,7 @@ def linepay_confirm():
     res = api.confirm(
         transaction_id=transaction_id,
         # Python SDK of Confirm API would expects amount as float value
-        amount=float(CACHE.get('amount', 1)),
+        amount=float(CACHE.get('amount', 0)),
         currency=CACHE.get('currency', 'JPY')
     )
     print('\n>>> Responce from API ...')
