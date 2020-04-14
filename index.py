@@ -175,6 +175,17 @@ def linepay_refund():
     })
 
 
+# Refund API called if user ordered wrong one
+@app.route('/member/pay/cancel', methods=['GET'])
+def linepay_cancel():
+    print('\n>>> Calling cancelUrl with transaction: ')
+    print(request.args)
+    return render_template('cancel.html', data={
+      # 'result': res,
+      'is_member_only': True
+    })
+
+
 if __name__ == '__main__':
     HOST = 'localhost'
     PORT = 5000
