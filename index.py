@@ -32,7 +32,9 @@ api = LinePayApi(
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', data={
+      'is_member_only': False
+    })
 
 
 @app.route('/favicon.ico')
@@ -46,7 +48,9 @@ def favicon():
 # Member-Only: LINE Pay Transactions
 @app.route('/member')
 def member():
-    return render_template('member.html', is_member_only=True)
+    return render_template('member.html', data={
+      'is_member_only': True
+    })
 
 
 # Initial User contact-point
@@ -110,7 +114,12 @@ def linepay_request():
     res = api.request(req)
     print('\n>>> Response from API ... res-body: ')
     print(res)
-    return render_template('request.html', result=res)
+    res['menu'] = menu
+    res['amount'] = amount
+    return render_template('request.html', data={
+      'result': res,
+      'is_member_only': True
+    })
 
 
 # Confirm API called after user confirmation
@@ -141,7 +150,10 @@ def linepay_confirm():
     res['paymentStatusCheckReturnCode'] = check_result.get('returnCode', None)
     res['paymentStatusCheckReturnMessage'] = check_result.get('returnMessage', None)
     res['payment_details'] = pay_detail
-    return render_template('complete.html', result=res)
+    return render_template('complete.html', data={
+      'result': res,
+      'is_member_only': True
+    })
 
 
 if __name__ == '__main__':
