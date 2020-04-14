@@ -33,7 +33,7 @@ api = LinePayApi(
 @app.route('/')
 def index():
     return render_template('index.html', data={
-      'is_member_only': False
+        'is_member_only': False
     })
 
 
@@ -49,7 +49,7 @@ def favicon():
 @app.route('/member')
 def member():
     return render_template('member.html', data={
-      'is_member_only': True
+        'is_member_only': True
     })
 
 
@@ -117,8 +117,8 @@ def linepay_request():
     res['menu'] = menu
     res['amount'] = amount
     return render_template('request.html', data={
-      'result': res,
-      'is_member_only': True
+        'result': res,
+        'is_member_only': True
     })
 
 
@@ -151,8 +151,8 @@ def linepay_confirm():
     res['paymentStatusCheckReturnMessage'] = check_result.get('returnMessage', None)
     res['payment_details'] = pay_detail
     return render_template('complete.html', data={
-      'result': res,
-      'is_member_only': True
+        'result': res,
+        'is_member_only': True
     })
 
 
@@ -161,6 +161,7 @@ def linepay_confirm():
 def linepay_refund():
     if request.method == 'POST':
         transaction_id = int(request.form['transaction_id'])
+        CACHE = {}
     else:
         transaction_id = 0
         print('>>> Error with user selection, could not fetch transaction_id')
@@ -170,8 +171,8 @@ def linepay_refund():
     print(res)
     res['source_transaction_id'] = transaction_id
     return render_template('refund.html', data={
-      'result': res,
-      'is_member_only': True
+        'result': res,
+        'is_member_only': True
     })
 
 
@@ -181,14 +182,15 @@ def linepay_cancel():
     res = request.args
     print('\n>>> Calling cancelUrl with transaction.')
     if res:
-      print(res)
-      transaction_id = res.get('transactionId')
+        print(res)
+        transaction_id = res.get('transactionId')
+        CACHE = {}
     else:
-      print('Failed to get response-body from cancelUrl.')
+        print('Failed to get response-body from cancelUrl.')
     print('\n>>> Cancellation for transaction : {0} complete.'.format(transaction_id))
     return render_template('cancel.html', data={
-      'result': res,
-      'is_member_only': True
+        'result': res,
+        'is_member_only': True
     })
 
 
