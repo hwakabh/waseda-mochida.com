@@ -38,8 +38,9 @@
           正常にお取引が完了しました。<br>
           <br>
           お取引番号 : {{ data.result.info.transactionId }}<br>
+          お取引金額 : {{ data.result.info.packages.0.amount }} 円<br>
+          ご注文内容 : {{ data.result.info.packages.0.products.0.name }}<br>
           <!-- Order ID : {{ data.result.info.orderId }}<br> -->
-          ご注文内容 : {{ data.result.info.packages }}<br>
           <!-- Payment Status Check Return Code: {{ data.result.returnCode }}<br>
           Payment Status Check Return Message: {{ data.result.returnMessage }}<br>
           Payment Details: {{ data.result.info.payment_details }}<br> -->
