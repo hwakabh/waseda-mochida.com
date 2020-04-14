@@ -179,7 +179,7 @@ def linepay_refund():
 @app.route('/member/pay/cancel', methods=['GET'])
 def linepay_cancel():
     res = request.args
-    print('\n>>> Calling cancelUrl with transaction: ')
+    print('\n>>> Calling cancelUrl with transaction.')
     if res:
       print(res)
       transaction_id = res.get('transactionId')
