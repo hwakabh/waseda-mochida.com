@@ -1,55 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
-<!-- Main Contents -->
-<div id="main">
+<!-- member only -->
+<section id="about" class="two">
+  <div class="container">
 
-  <!-- SECTION: Intro -->
-  <section id="top" class="one dark cover">
-    <div class="container">
-      <header>
-        <h2 class="alt">居酒屋もちだ</h2>
-        <h2 class="alt">オンライン</h2>
-        <p>
-          オンライン上で居酒屋もちだへ行こう！<br><br class="br-sp">
-          みんなに会いたくても会えないこの状況。<br><br class="br-sp">
-          <br><br class="br-sp">
-          オンライン上でなら安心して会えますよね！<br><br class="br-sp">
-          オンラインで居酒屋もちだを通して<br class="br-sp">生まれた新しい出会いを、<br><br class="br-sp">
-          落ち着いたらまたこの店で、<br class="br-sp">オフラインでの出会いへ。<br><br class="br-sp">
-          <br><br class="br-sp">
-          地域 × 学生 × OB の憩いの場。<br><br class="br-sp">
-          「居酒屋もちだオンライン」へようこそ！<br><br class="br-sp">
-        </p>
-      </header>
-    </div>
-  </section>
+    <header>
+      <h2>ご注文内容</h2>
+    </header>
 
-  <!-- member only -->
-  <section id="about" class="two">
-    <div class="container">
-
-      <header>
-        <h2>ご注文内容</h2>
-      </header>
-
-      <h3>以下でよろしいですか？</h3>
-        <p>
-          ご注文メニュー: {{ data.result.menu }}<br>
-          ご注文金額: {{ data.result.amount }} 円<br>
-          <!-- paymentAccessToken: {{ data.result.info.paymentAccessToken }}<br>
-          transactionId: {{ data.result.info.transactionId }}<br>
-          Payment Status Check Return Code: {{ data.result.returnCode }}<br>
-          Payment Status Check Return Message: {{ data.result.returnMessage }}<br> -->
-          <br>
-          上記の内容でよろしければ、<br class="br-sp">お会計を済ませるために、<br class="br-sp">以下アイコンをクリックして下さい。<br>
-          ※ ご利用の端末で LINE アプリケーションが起動します。<br>
-          <br>
-          <a href="{{ data.result.info.paymentUrl.app }}" target="_blank" rel="noopener noreferrer">
-            <img src="/static/img/linepay.png">
-          </a>
-        </p>
-    </div>
-  </section>
-
-</div>
+    <h3>以下でよろしいですか？</h3>
+      <p>
+        ご注文メニュー: {{ data.result.menu }}<br>
+        ご注文金額: {{ data.result.amount }} 円<br>
+        <!-- paymentAccessToken: {{ data.result.info.paymentAccessToken }}<br>
+        transactionId: {{ data.result.info.transactionId }}<br>
+        Payment Status Check Return Code: {{ data.result.returnCode }}<br>
+        Payment Status Check Return Message: {{ data.result.returnMessage }}<br> -->
+        <br>
+        上記の内容でよろしければ、<br class="br-sp">お会計を済ませるために、<br class="br-sp">以下アイコンをクリックして下さい。<br>
+        ※ ご利用の端末で LINE アプリケーションが起動します。<br>
+        <br>
+        <a href="{{ data.result.info.paymentUrl.app }}" target="_blank" rel="noopener noreferrer">
+          <img src="/static/img/linepay.png">
+        </a>
+        <br>
+        <br>
+        <a href="/member" target="_blank" rel="noopener noreferrer">居酒屋もちだオンラインにもどる</a>
+      </p>
+  </div>
+</section>
 {% endblock %}

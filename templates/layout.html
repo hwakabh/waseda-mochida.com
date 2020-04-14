@@ -62,8 +62,56 @@
     </div>
   </div>
 
-  {% block content %}
-  {% endblock %}
+  <!-- Main Contents -->
+  <div id="main">
+    {% if not data.is_member_only %}
+    <!-- SECTION: Intro -->
+    <section id="top" class="one dark cover">
+      <div class="container">
+
+        <header>
+          <h2 class="alt">早稲田の角打ち風立ち飲み酒場</h2>
+          <h2 class="alt">居酒屋もちだ</h2>
+          <p>
+            地域 × 学生 × OB の憩いの場に。<br>
+            <br>
+            早稲田にできた角打ち風立ち飲み酒場、居酒屋もちだです。<br>
+            多くの出会いと温かさを生む空間を目指しています。<br>
+          </p>
+        </header>
+
+        <footer>
+          <a href="#portfolio" class="button scrolly">メニューを見る</a>
+        </footer>
+
+      </div>
+    </section>
+    {% else %}
+    <!-- SECTION: Intro -->
+    <section id="top" class="one dark cover">
+      <div class="container">
+        <header>
+          <h2 class="alt">居酒屋もちだ</h2>
+          <h2 class="alt">オンライン</h2>
+          <p>
+            オンライン上で居酒屋もちだへ行こう！<br><br class="br-sp">
+            みんなに会いたくても会えないこの状況。<br><br class="br-sp">
+            <br><br class="br-sp">
+            オンライン上でなら安心して会えますよね！<br><br class="br-sp">
+            オンラインで居酒屋もちだを通して<br class="br-sp">生まれた新しい出会いを、<br><br class="br-sp">
+            落ち着いたらまたこの店で、<br class="br-sp">オフラインでの出会いへ。<br><br class="br-sp">
+            <br><br class="br-sp">
+            地域 × 学生 × OB の憩いの場。<br><br class="br-sp">
+            「居酒屋もちだオンライン」へようこそ！<br><br class="br-sp">
+          </p>
+        </header>
+      </div>
+    </section>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+  </div>
 
   <!-- Footer -->
   <div id="footer">
