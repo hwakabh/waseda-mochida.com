@@ -97,7 +97,7 @@ def linepay_request():
             {
               'id': 'product-001',
               'name': menu,
-              'imageUrl': 'https://placehold.jp/99ccff/003366/150x150.png?text=Sample%20product',
+              'imageUrl': '{0}/static/img/return_{1}.jpg'.format(SERVER_URL, amount),
               'quantity': 1,
               'price': amount
             }
@@ -164,7 +164,7 @@ def linepay_refund():
     else:
         transaction_id = 0
         print('>>> Error with user selection, could not fetch transaction_id')
-    print('\n>>> Calling Refund API with transaction: {}'.format(transaction_id))
+    print('\n>>> Calling Refund API with transaction: {0}'.format(transaction_id))
     print('Starting refund operation for transaction_id: {0}'.format(transaction_id))
     res = api.refund(transaction_id)
     print(res)
