@@ -1974,6 +1974,15 @@ input, select, textarea {
   button.linepay:active {
     background-color: #fff;
   }
+  button.linepay_refund {
+    background-color: #e8edec;
+  }
+  button.linepay_refund:hover {
+    background-color: #e8edec;
+  }
+  button.linepay_refund:active {
+    background-color: #e8edec;
+  }
 
     input[type="button"]:hover,
     input[type="submit"]:hover,

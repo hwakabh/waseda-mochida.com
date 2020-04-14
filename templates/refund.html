@@ -13,8 +13,8 @@
         {% if data.result.returnCode == '0000' %}
         払い戻し処理が正常に完了しました。<br>
         <br>
-        元取引番号 : {{ data.result.info.source_transaction_id }}<br>
-        払い戻し処理番号 : {{ data.result.info.refundTransactionId }}<br>
+        元取引番号 : {{ data.result.source_transaction_id }}<br>
+        払戻処理番号 : {{ data.result.info.refundTransactionId }}<br>
         <br>
         {% else %}
         払い戻し処理に失敗しました。<br>
