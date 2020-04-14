@@ -29,13 +29,11 @@
     <div class="container">
 
       <header>
-        <h2>お会計確認</h2>
+        <h2>ご注文内容</h2>
       </header>
 
-
-      <h3>ご注文内容</h3>
+      <h3>以下でよろしいですか？</h3>
         <p>
-          取引番号: {{ data.result.info.transactionId }}<br>
           ご注文メニュー: {{ data.result.menu }}<br>
           ご注文金額: {{ data.result.amount }} 円<br>
           <!-- paymentAccessToken: {{ data.result.info.paymentAccessToken }}<br>
@@ -43,8 +41,8 @@
           Payment Status Check Return Code: {{ data.result.returnCode }}<br>
           Payment Status Check Return Message: {{ data.result.returnMessage }}<br> -->
           <br>
-          上記の内容でよろしければ、お会計を済ませるために以下アイコンをクリックして下さい。<br>
-          ※ ご利用のご端末で LINE アプリケーションが起動します。<br>
+          上記の内容でよろしければ、<br class="br-sp">お会計を済ませるために、<br class="br-sp">以下アイコンをクリックして下さい。<br>
+          ※ ご利用の端末で LINE アプリケーションが起動します。<br>
           <br>
           <a href="{{ data.result.info.paymentUrl.app }}" target="_blank" rel="noopener noreferrer">
             <img src="/static/img/linepay.png">

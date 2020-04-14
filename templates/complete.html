@@ -7,10 +7,18 @@
   <section id="top" class="one dark cover">
     <div class="container">
       <header>
-        <h2 class="alt">早稲田の角打ち居酒屋</h2>
-        <h2 class="alt">もちだ</h2>
+        <h2 class="alt">居酒屋もちだ</h2>
+        <h2 class="alt">オンライン</h2>
         <p>
-          地域 × 学生 × OB の憩いの場に。
+          オンライン上で居酒屋もちだへ行こう！<br><br class="br-sp">
+          みんなに会いたくても会えないこの状況。<br><br class="br-sp">
+          <br><br class="br-sp">
+          オンライン上でなら安心して会えますよね！<br><br class="br-sp">
+          オンラインで居酒屋もちだを通して<br class="br-sp">生まれた新しい出会いを、<br><br class="br-sp">
+          落ち着いたらまたこの店で、<br class="br-sp">オフラインでの出会いへ。<br><br class="br-sp">
+          <br><br class="br-sp">
+          地域 × 学生 × OB の憩いの場。<br><br class="br-sp">
+          「居酒屋もちだオンライン」へようこそ！<br><br class="br-sp">
         </p>
       </header>
     </div>
@@ -21,18 +29,22 @@
     <div class="container">
 
       <header>
-        <h2>もちだファンのみなさまへ</h2>
+        <h2>決済結果</h2>
       </header>
 
 
-      <h3>Order ID : {{ result.info.orderId }}</h3>
+      <h3>ご注文ありがとうございます。</h3>
         <p>
-          transactionId: {{ result.info.transactionId }}<br>
-          purchase: {{ result.info.packages }}<br>
-          Payment Status Check Return Code: {{ result.returnCode }}<br>
-          Payment Status Check Return Message: {{ result.returnMessage }}<br>
-          Payment Details: {{ result.info.payment_details }}<br>
+          正常にお取引が完了しました。<br>
           <br>
+          お取引番号 : {{ data.result.info.transactionId }}<br>
+          <!-- Order ID : {{ data.result.info.orderId }}<br> -->
+          ご注文内容 : {{ data.result.info.packages }}<br>
+          <!-- Payment Status Check Return Code: {{ data.result.returnCode }}<br>
+          Payment Status Check Return Message: {{ data.result.returnMessage }}<br>
+          Payment Details: {{ data.result.info.payment_details }}<br> -->
+          <br>
+          <a href="/member" target="_blank" rel="noopener noreferrer">居酒屋もちだオンラインにもどる</a>
           <!-- お金を払い戻すには以下のリンクをクリックしてください<br>
           <a href="/member/pay/refund" target="_blank" rel="noopener noreferrer">払い戻し</a> -->
         </p>
