@@ -53,6 +53,7 @@ def member():
 # With this method, seller would receive paymentURL from RequestAPI and would notice to user
 @app.route('/member/pay/request', methods=['GET', 'POST'])
 def linepay_request():
+    global amount
     if request.method == 'POST':
         amount = int(request.form['amount'])
     else:
