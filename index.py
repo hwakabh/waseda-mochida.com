@@ -156,6 +156,19 @@ def linepay_confirm():
     })
 
 
+# Refund API called if user ordered wrong one
+@app.route('/member/pay/refund', methods=['GET'])
+def linepay_refund():
+    print('\n>>>> Cached data: ')
+    print(CACHE)
+    transaction_id = int(CACHE.get('transaction_id', 0))
+    print('\n>>> Calling Refund API with transaction: {}'.format(transaction_id))
+    print('Starting refund operation for transaction_id: {0}'.format(transaction_id))
+    res = api.refund(transaction_id)
+    print(res)
+    return res
+
+
 if __name__ == '__main__':
     HOST = 'localhost'
     PORT = 5000
