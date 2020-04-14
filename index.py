@@ -91,7 +91,7 @@ def linepay_request():
           'products': [
             {
               'id': 'product-001',
-              'name': '1,000 円セット',
+              'name': menu,
               'imageUrl': 'https://placehold.jp/99ccff/003366/150x150.png?text=Sample%20product',
               'quantity': 1,
               'price': amount
