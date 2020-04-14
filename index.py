@@ -46,7 +46,7 @@ def favicon():
 # Member-Only: LINE Pay Transactions
 @app.route('/member')
 def member():
-    return render_template('member.html')
+    return render_template('member.html', is_member_only=True)
 
 
 # Initial User contact-point
