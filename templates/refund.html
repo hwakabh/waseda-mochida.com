@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- member only -->
+<section id="about" class="two">
+  <div class="container">
+
+    <header>
+      <h2>注文払い戻し</h2>
+    </header>
+
+    <h3>払い戻し処理結果</h3>
+      <p>
+        {% if data.result.returnCode == '0000' %}
+        払い戻し処理が正常に完了しました。<br>
+        <br>
+        元取引番号 : {{ data.result.info.source_transaction_id }}<br>
+        払い戻し処理番号 : {{ data.result.info.refundTransactionId }}<br>
+        <br>
+        {% else %}
+        払い戻し処理に失敗しました。<br>
+        大変お手数ではございますが、店長清武までご連絡をお願い致します。<br>
+        <br>
+        {% endif %}
+        <a href="/member" target="_blank" rel="noopener noreferrer">居酒屋もちだオンラインにもどる</a><br>
+      </p>
+  </div>
+</section>
+{% endblock %}

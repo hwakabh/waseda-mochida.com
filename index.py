@@ -164,12 +164,15 @@ def linepay_refund():
     else:
         transaction_id = 0
         print('>>> Error with user selection, could not fetch transaction_id')
-    # transaction_id = int(CACHE.get('transaction_id', 0))
     print('\n>>> Calling Refund API with transaction: {}'.format(transaction_id))
     print('Starting refund operation for transaction_id: {0}'.format(transaction_id))
     res = api.refund(transaction_id)
     print(res)
-    return res
+    res['source_transaction_id'] = transaction_id
+    return render_template('refund.html', data={
+      'result': res,
+      'is_member_only': True
+    })
 
 
 if __name__ == '__main__':
