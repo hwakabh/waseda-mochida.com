@@ -9,7 +9,11 @@
     </header>
 
     <h3>キャンセル結果</h3>
-        <a href="/member" target="_blank" rel="noopener noreferrer">居酒屋もちだオンラインにもどる</a><br>
+      キャンセル処理が正常に完了しました。<br>
+      キャンセル対象取引番号 : {{ data.result.transactionId }}<br>
+      キャンセル対象注文番号 : {{ data.result.orderId }}<br>
+      <br>
+      <a href="/member" rel="noopener noreferrer">居酒屋もちだオンラインにもどる</a><br>
       </p>
   </div>
 </section>
