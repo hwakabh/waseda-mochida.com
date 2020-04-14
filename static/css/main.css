@@ -1956,14 +1956,23 @@ input, select, textarea {
     background-color: #8ebebc;
     border: 0;
     cursor: pointer;
-    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
+    /* background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
     background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
-    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png"); */
     -moz-transition: background-color 0.35s ease-in-out;
     -webkit-transition: background-color 0.35s ease-in-out;
     -ms-transition: background-color 0.35s ease-in-out;
     transition: background-color 0.35s ease-in-out;
+  }
+  button.linepay {
+    background-color: #fff;
+  }
+  button.linepay:hover {
+    background-color: #fff;
+  }
+  button.linepay:active {
+    background-color: #fff;
   }
 
     input[type="button"]:hover,

@@ -51,13 +51,29 @@ def member():
 
 # Initial User contact-point
 # With this method, seller would receive paymentURL from RequestAPI and would notice to user
-@app.route('/member/pay/request')
+@app.route('/member/pay/request', methods=['GET', 'POST'])
 def linepay_request():
+    if request.method == 'POST':
+        amount = int(request.form['amount'])
+    else:
+        amount = 0
+        print('>>> Error with user selection, none of the amount selected.')
+    
+    if (amount == 1000) or (amount == 3000):
+        menu = '{} 円セット'.format(amount)
+    elif amount == 5000:
+        menu = 'ちょい漢気 5000 円セット'
+    elif amount == 10000:
+        menu = '漢気 10000 円セット'
+    else:
+        menu = '未選択'
+
     order_id = str(uuid.uuid4())
-    amount = 1
     currency = 'JPY'
     print('\n>>> Requesting to LINE Pay API for transaction reservation.')
-    print('>>> Order ID: {}'.format(order_id))
+    print('Order ID: {}'.format(order_id))
+    print('Ordered menu: {}'.format(menu))
+    print('Purchase amount: {0} {1}'.format(currency, amount))
     # Set caches
     CACHE['order_id'] = order_id
     CACHE['amount'] = amount
@@ -70,15 +86,15 @@ def linepay_request():
       'packages': [
         {
           'id': 'package-999',
-          'amount': 1,
-          'name': 'Sample package',
+          'amount': amount,
+          'name': '来店メニュー',
           'products': [
             {
               'id': 'product-001',
-              'name': 'Sample product',
+              'name': '1,000 円セット',
               'imageUrl': 'https://placehold.jp/99ccff/003366/150x150.png?text=Sample%20product',
               'quantity': 1,
-              'price': 1
+              'price': amount
             }
           ]
         }
