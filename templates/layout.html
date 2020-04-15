@@ -17,7 +17,9 @@
     <div class="top">
       <div id="logo">
         <h1 id="title"><a href="/">居酒屋 もちだ</a></h1>
+        {% if not data.is_member_only %}
         <p>
+          <br>
           営業時間：<br>
           月  18:00 ～ 22:00<br>
           火  18:00 ～ 22:00<br>
@@ -27,6 +29,15 @@
           土  17:00 ～ 22:00<br>
           日  17:00 ～ 21:00<br>
         </p>
+        {% else %}
+        <p>
+          <br>
+          開催日時：曜日検討中<br>
+          週1回開催<br>
+          曜日固定予定<br>
+          <br>
+        </p>
+        {% endif %}
       </div>
 
       {% if not data.is_member_only %}
