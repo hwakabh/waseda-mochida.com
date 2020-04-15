@@ -206,7 +206,7 @@ input, select, textarea {
     font-style: italic;
   }
 
-  p, ul, ol, dl, table {
+  p, ul, ol, dl {
     margin-bottom: 2em;
     font-size: 13pt;
   }
@@ -1909,37 +1909,26 @@ input, select, textarea {
     border: 0;
   }
 
-/* Table
+/* Table */
 
-  table {
-    width: 100%;
-    text-align: left;
-  }
-
-    table tbody tr:nth-child(2n+2) {
-      background: #f4f4f4;
-    }
-
-    table td {
-      padding: 0.5em 1em 0.5em 1em;
-    }
-
-    table th {
-      text-align: left;
-      padding: 0.5em 1em 0.5em 1em;
-      color: #fff;
-      background: #222729 url("images/overlay.png");
-    }
-
-    table thead {
-      background: #444;
-      color: #fff;
-    }
-
-    table tfoot {
-      background: #eee;
-    } */
-
+table {
+  margin: 20px auto;
+  width: 100%;
+  font-size: 12px;
+  text-align: left;
+}
+.contracts th {
+  background: #666 url("images/overlay.png");
+  padding: 0.5em 1em 0.5em 1em;
+  border: solid 1px #ccc;
+  color: #fff;
+}
+.contracts td {
+  border: solid 1px #ccc;
+  background: #f4f4f4;
+  padding: 10px;
+}
+ 
 /* Button */
 
   input[type="button"],
@@ -2620,6 +2609,21 @@ input, select, textarea {
       .br-sp {
         display: block;
       }
+
+      .last td:last-child {
+        border-bottom: solid 1px #ccc;
+        width: 100%;
+      }
+      .contracts {
+        width: 80%;
+      }
+      .contracts th,
+      .contracts td {
+        border-bottom: none;
+        display: block;
+        width: 100%;
+      }
+    
       body, p, li, input, textarea, select {
         font-size: 11pt;
       }
