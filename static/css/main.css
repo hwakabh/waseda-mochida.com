@@ -73,6 +73,7 @@ input, select, textarea {
   }
   .message {
     text-align: center;
+    list-style: none;
   }
   .sp-message {
     display: inline-block;
