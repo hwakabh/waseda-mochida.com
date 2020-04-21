@@ -10,6 +10,13 @@ import uuid
 
 app = Flask(__name__)
 
+# Email parameters
+FROM_ADDRESS = 'mochida.waseda@gmail.com'
+MY_PASSWORD = os.environ.get('EMAIL_GOOGLE_PASSWORD')
+TO_ADDRESS = 'hrykwkbys1024@gmail.com'
+SUBJECT = ''
+BODY = ''
+REQUEST_EMAIL_ADDR = ''
 
 # LINE Pay API config and instanciate
 LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
@@ -33,7 +40,8 @@ api = LinePayApi(
 @app.route('/')
 def index():
     return render_template('index.html', data={
-        'is_member_only': False
+        'is_member_only': False,
+        'page_from': request.method,
     })
 
 
@@ -43,6 +51,27 @@ def favicon():
         os.path.join(app.root_path, 'static/img'),
         'favicon.ico',
     )
+
+
+@app.route('/mail', methods=['POST'])
+def mail():
+    REQUEST_USERNAME = request.form['name']
+    REQUEST_EMAIL_ADDR = request.form['email']
+    BODY = request.form['message']
+
+    print('>>> Email sending requested.')
+    print('\tname: {}'.format(REQUEST_USERNAME))
+    print('\temail: {}'.format(REQUEST_EMAIL_ADDR))
+    print('\tmessage: \n{}'.format(BODY))
+    # try to send email
+
+    # If success
+    return render_template('mail.html', data={
+        'is_member_only': False,
+        'request_name': REQUEST_USERNAME,
+        'request_email': REQUEST_EMAIL_ADDR,
+        'request_body': BODY,
+    })
 
 
 # Member-Only: LINE Pay Transactions
