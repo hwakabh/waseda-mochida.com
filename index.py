@@ -75,6 +75,7 @@ def mail():
 
     REQUEST_USERNAME = request.form['name']
     REQUEST_EMAIL_ADDR = request.form['email']
+    # Add REQUEST_EMAIL_ADDR in BODY as content
     BODY = 'Contact from {0}\n email: {1}\n\n{2}\n{3}\n{4}\n'.format(
         REQUEST_USERNAME,
         REQUEST_EMAIL_ADDR,
@@ -87,7 +88,6 @@ def mail():
     print('email: {}'.format(REQUEST_EMAIL_ADDR))
     print('message: \n\n{}'.format(BODY))
 
-    # Add REQUEST_EMAIL_ADDR in BODY as content
     draft = build_mailbody(from_addr=FROM_ADDRESS, to_addr=TO_ADDRESS, subject=SUBJECT, body=BODY)
 
     # try to send email
@@ -105,6 +105,7 @@ def mail():
         'request_email': REQUEST_EMAIL_ADDR,
         'request_body': request.form['message'],
     })
+    # If failed like SMTPAuthenticationError, return to sorry-page and guide user to send email admin directly
 
 
 # Member-Only: LINE Pay Transactions
