@@ -18,7 +18,8 @@ app = Flask(__name__)
 # Email parameters
 FROM_ADDRESS = 'mochida.waseda@gmail.com'
 MY_PASSWORD = os.environ.get('EMAIL_GOOGLE_PASSWORD')
-TO_ADDRESS = 'hrykwkbys1024@gmail.com'
+TO_ADDRESS = 'sukekiyoooooi@gmail.com'
+BCC = os.environ.get('EMAIL_BCC_ADDRESS')
 SUBJECT = ''
 BODY = ''
 REQUEST_EMAIL_ADDR = ''
@@ -64,9 +65,12 @@ def mail():
         mail = MIMEText(body)
         mail['From'] = from_addr
         mail['To'] = to_addr
-        mail['Bcc'] = ''
         mail['Subject'] = subject
         mail['Date'] = formatdate()
+        if BCC is not None:
+            mail['Bcc'] = BCC
+        else:
+            mail['Bcc'] = ''
         return mail
 
     REQUEST_USERNAME = request.form['name']
