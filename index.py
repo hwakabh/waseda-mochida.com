@@ -92,6 +92,7 @@ def mail():
 
     # try to send email
     print('>>> Sending to email to administrator : {}...'.format(TO_ADDRESS))
+    print(draft)
     #context = ssl.create_default_context()
     smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
     smtp.login(FROM_ADDRESS, MY_PASSWORD)
@@ -103,7 +104,7 @@ def mail():
         'is_member_only': False,
         'request_name': REQUEST_USERNAME,
         'request_email': REQUEST_EMAIL_ADDR,
-        'request_body': request.form['message'],
+        'request_body': request.form['message'].splitlines(),
     })
     # If failed like SMTPAuthenticationError, return to sorry-page and guide user to send email admin directly
 

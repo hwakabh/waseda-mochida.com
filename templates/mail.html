@@ -16,7 +16,9 @@
         お客様のお名前 : <br class="br-sp">{{ data.request_name }}<br>
         お客様のメールアドレス : <br class="br-sp">{{ data.request_email }}<br>
         お問い合わせ内容 : <br>
-        {{ data.request_body }}<br>
+        {% for line in data.request_body %}
+          {{ line }}<br>
+        {% endfor %}
         <br>
         <a href="/" rel="noopener noreferrer">居酒屋もちだホームページに戻る</a><br>
         <br>
