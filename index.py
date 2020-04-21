@@ -7,9 +7,21 @@ from linepay import LinePayApi
 from socket import gethostname
 import os
 import uuid
+import smtplib
+from email.mime.text import MIMEText
+from email.utils import formatdate
+import ssl
+
 
 app = Flask(__name__)
 
+# Email parameters
+FROM_ADDRESS = 'mochida.waseda@gmail.com'
+MY_PASSWORD = os.environ.get('EMAIL_GOOGLE_PASSWORD')
+TO_ADDRESS = 'hrykwkbys1024@gmail.com'
+SUBJECT = ''
+BODY = ''
+REQUEST_EMAIL_ADDR = ''
 
 # LINE Pay API config and instanciate
 LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
@@ -33,7 +45,8 @@ api = LinePayApi(
 @app.route('/')
 def index():
     return render_template('index.html', data={
-        'is_member_only': False
+        'is_member_only': False,
+        'page_from': request.method,
     })
 
 
@@ -43,6 +56,51 @@ def favicon():
         os.path.join(app.root_path, 'static/img'),
         'favicon.ico',
     )
+
+
+@app.route('/mail', methods=['POST'])
+def mail():
+    def build_mailbody(from_addr, to_addr, subject, body):
+        mail = MIMEText(body)
+        mail['From'] = from_addr
+        mail['To'] = to_addr
+        mail['Bcc'] = ''
+        mail['Subject'] = subject
+        mail['Date'] = formatdate()
+        return mail
+
+    REQUEST_USERNAME = request.form['name']
+    REQUEST_EMAIL_ADDR = request.form['email']
+    BODY = 'Contact from {0}\n email: {1}\n\n{2}\n{3}\n{4}\n'.format(
+        REQUEST_USERNAME,
+        REQUEST_EMAIL_ADDR,
+        '-' * 10,
+        request.form['message'],
+        '-' * 10
+    )
+    print('>>> Email sending requested.')
+    print('name: {}'.format(REQUEST_USERNAME))
+    print('email: {}'.format(REQUEST_EMAIL_ADDR))
+    print('message: \n\n{}'.format(BODY))
+
+    # Add REQUEST_EMAIL_ADDR in BODY as content
+    draft = build_mailbody(from_addr=FROM_ADDRESS, to_addr=TO_ADDRESS, subject=SUBJECT, body=BODY)
+
+    # try to send email
+    print('>>> Sending to email to administrator ...')
+    #context = ssl.create_default_context()
+    smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
+    smtp.login(FROM_ADDRESS, MY_PASSWORD)
+    smtp.sendmail(FROM_ADDRESS, TO_ADDRESS, draft.as_string())
+    smtp.close()
+
+    # If success
+    return render_template('mail.html', data={
+        'is_member_only': False,
+        'request_name': REQUEST_USERNAME,
+        'request_email': REQUEST_EMAIL_ADDR,
+        'request_body': request.form['message'],
+    })
 
 
 # Member-Only: LINE Pay Transactions
