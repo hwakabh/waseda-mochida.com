@@ -91,7 +91,7 @@ def mail():
     draft = build_mailbody(from_addr=FROM_ADDRESS, to_addr=TO_ADDRESS, subject=SUBJECT, body=BODY)
 
     # try to send email
-    print('>>> Sending to email to administrator ...')
+    print('>>> Sending to email to administrator : {}...'.format(TO_ADDRESS))
     #context = ssl.create_default_context()
     smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
     smtp.login(FROM_ADDRESS, MY_PASSWORD)
