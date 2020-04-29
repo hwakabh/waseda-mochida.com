@@ -47,6 +47,7 @@
           <li><a href="#about" id="about-link"><span class="icon solid fa-user">店主より</span></a></li>
           <li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">おしながき</span></a></li>
           <li><a href="#access" id="access-link"><span class="icon solid fa-map">店舗情報</span></a></li>
+          <li><a href="#view" id="view-link"><span class="icon solid fa-image">店舗内観・外観</span></a></li>
           <li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">ご予約</span></a></li>
         </ul>
       </nav>
@@ -56,8 +57,8 @@
           <li><a href="#top" id="top-link"><span class="icon solid fa-home">ご挨拶</span></a></li>
           <li><a href="#about" id="about-link"><span class="icon solid fa-user">居酒屋もちだオンラインとは</span></a></li>
           <li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">来店メニュー</span></a></li>
-          <li><a href="#access" id="access-link"><span class="icon solid fa-map">来店する</span></a></li>
-          <li><a href="#contact" id="contact-link"><span class="icon solid fa-map">特定商法取引法に関して</span></a></li>
+          <li><a href="#access" id="access-link"><span class="icon solid fa-shopping-cart">来店する</span></a></li>
+          <li><a href="#contact" id="contact-link"><span class="icon solid fa-check-square">特定商法取引法に関して</span></a></li>
         </ul>
       </nav>
       {% endif %}
@@ -66,9 +67,9 @@
     <!-- Navigation Bottum -->
     <div class="bottom">
       <ul class="icons">
-        <li><a href="https://twitter.com/WasedaMochida"><i class="fab fa-twitter"></i></a></li>
-        <li><a href="https://www.facebook.com/%E6%97%A9%E7%A8%B2%E7%94%B0%E3%81%AB%E4%BB%8A%E7%A7%8B%E6%96%B0%E3%81%97%E3%81%8F%E5%B1%85%E9%85%92%E5%B1%8B%E9%96%8B%E5%BA%97%E5%B1%85%E9%85%92%E5%B1%8B%E3%82%82%E3%81%A1%E3%81%A0-101106664589685/"><i class="fab fa-facebook"></i></a></li>
-        <li><a href="https://www.instagram.com/mochida_waseda/"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="https://twitter.com/WasedaMochida" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="https://www.facebook.com/%E6%97%A9%E7%A8%B2%E7%94%B0%E3%81%AB%E4%BB%8A%E7%A7%8B%E6%96%B0%E3%81%97%E3%81%8F%E5%B1%85%E9%85%92%E5%B1%8B%E9%96%8B%E5%BA%97%E5%B1%85%E9%85%92%E5%B1%8B%E3%82%82%E3%81%A1%E3%81%A0-101106664589685/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a></li>
+        <li><a href="https://www.instagram.com/mochida_waseda/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
         <li><a href="#contact"><i class="fas fa-envelope"></i></a></li>
       </ul>
     </div>
@@ -85,16 +86,18 @@
           <h2 class="alt">早稲田の角打ち風立ち飲み酒場</h2>
           <h2 class="alt">居酒屋もちだ</h2>
           <p>
-            地域 × 学生 × OB の憩いの場に。<br>
-            <br>
-            早稲田にできた角打ち風立ち飲み酒場、居酒屋もちだです。<br>
-            多くの出会いと温かさを生む空間を目指しています。<br>
+            地域 × 学生 × OB の憩いの場に。<br><br class="br-sp">
+            <br><br class="br-sp">
+            早稲田にできた角打ち風立ち飲み酒場<br class="br-sp">居酒屋もちだです。<br><br class="br-sp">
+            多くの出会いと温かさを生む空間を目指しています。<br><br class="br-sp">
           </p>
         </header>
 
+        {% if data.page_from == 'GET' %}
         <footer>
           <a href="#portfolio" class="button scrolly">メニューを見る</a>
         </footer>
+        {% endif %}
 
       </div>
     </section>
@@ -128,7 +131,7 @@
   <!-- Footer -->
   <div id="footer">
     <ul class="copyright">
-      <li>@hwakabh All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      <li>@hwakabh All rights reserved.</li><li>Design: <a href="http://html5up.net" target="_blank" rel="noopener noreferrer">HTML5 UP</a></li>
     </ul>
   </div>
 

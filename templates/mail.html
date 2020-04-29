@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section id="about" class="two">
+  <div class="container">
+
+    <header>
+      <h2>お問い合わせ</h2>
+    </header>
+
+
+    <h3>お問い合わせありがとうございます</h3>
+      <p>
+        以下の内容でお問い合わせを受け付けました。<br>
+        <br>
+        お客様のお名前 : <br class="br-sp">{{ data.request_name }}<br>
+        お客様のメールアドレス : <br class="br-sp">{{ data.request_email }}<br>
+        お問い合わせ内容 : <br>
+        {% for line in data.request_body %}
+          {{ line }}<br>
+        {% endfor %}
+        <br>
+        <a href="/" rel="noopener noreferrer">居酒屋もちだホームページに戻る</a><br>
+        <br>
+      </p>
+  </div>
+</section>
+{% endblock %}

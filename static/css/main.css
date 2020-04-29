@@ -73,6 +73,7 @@ input, select, textarea {
   }
   .message {
     text-align: center;
+    list-style: none;
   }
   .sp-message {
     display: inline-block;
@@ -2004,7 +2005,9 @@ table {
     }
 
       .item header h3 {
-        font-size: 1em;
+        font-size: 12px;
+        padding-left: 1px;
+        padding-right: 1px;
       }
 
 /* Icons */
@@ -2259,8 +2262,9 @@ table {
       }
 
       #main > section.one {
-        background-color: #81918E;
+        background-color: #778899;
         background-image: url("../img/banner.jpg");
+        opacity: 0.75;
       }
 
       #main > section.two {
@@ -2625,7 +2629,7 @@ table {
       }
     
       body, p, li, input, textarea, select {
-        font-size: 11pt;
+        font-size: 10pt;
       }
 
       h2 {
