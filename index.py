@@ -11,6 +11,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.utils import formatdate
 import ssl
+import sys
 
 
 app = Flask(__name__)
@@ -29,6 +30,12 @@ LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
 LINE_PAY_CHANNEL_SECRET = os.environ.get('LINE_PAY_CHANNEL_SECRET')
 LINE_PAY_IS_SANDBOX = False
 LINE_PAY_SANDBOX_URL = 'https://api-pay.line.me'
+
+if (LINE_PAY_CHANNEL_ID is None) or (LINE_PAY_CHANNEL_SECRET is None):
+    print('>>> Precheck failed.')
+    print('Environmental variables for LINE API missing, set LINE_PAY_CHANNEL_ID and LINE_PAY_CHANNEL_SECRET first.\n')
+    sys.exit(1)
+
 CACHE = {}
 
 if 'hwakabh' in gethostname():
