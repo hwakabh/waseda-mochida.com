@@ -37,6 +37,7 @@ if (LINE_PAY_CHANNEL_ID is None) or (LINE_PAY_CHANNEL_SECRET is None):
     sys.exit(1)
 
 CACHE = {}
+global amount
 
 if 'hwakabh' in gethostname():
     SERVER_URL = 'http://localhost:5000'
@@ -128,7 +129,6 @@ def member():
 # With this method, seller would receive paymentURL from RequestAPI and would notice to user
 @app.route('/member/pay/request', methods=['GET', 'POST'])
 def linepay_request():
-    global amount
     if request.method == 'POST':
         amount = int(request.form['amount'])
     else:
