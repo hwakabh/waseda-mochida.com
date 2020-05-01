@@ -96,25 +96,38 @@ def mail():
     print('email: {}'.format(REQUEST_EMAIL_ADDR))
     print('message: \n\n{}'.format(BODY))
 
+    print('>>> Building email body as draft.')
     draft = build_mailbody(from_addr=FROM_ADDRESS, to_addr=TO_ADDRESS, subject=SUBJECT, body=BODY)
-
-    # try to send email
-    print('>>> Sending to email to administrator : {}...'.format(TO_ADDRESS))
     print(draft)
-    #context = ssl.create_default_context()
-    smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
-    smtp.login(FROM_ADDRESS, MY_PASSWORD)
-    smtp.sendmail(FROM_ADDRESS, TO_ADDRESS, draft.as_string())
-    smtp.close()
 
-    # If success
+    #context = ssl.create_default_context()
+    is_success = True
+    smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
+    try:
+        print('>>> Login to Google accounts as administrator ...')
+        smtp.login(FROM_ADDRESS, MY_PASSWORD)
+    except smtplib.SMTPAuthenticationError:
+        is_success = False
+        print('Authentication error occured. Redirected mail.html with sorry-message.')
+        smtp.close()
+
+    try:
+        print('>>> Sending to email to administrator : {}...'.format(TO_ADDRESS))
+        smtp.sendmail(FROM_ADDRESS, TO_ADDRESS, draft.as_string())
+    except:
+        print('>>> Failed to send email ...')
+        smtp.close()
+    finally:
+        print('>>> Successfully send email.')
+        smtp.close()
+
     return render_template('mail.html', data={
         'is_member_only': False,
         'request_name': REQUEST_USERNAME,
         'request_email': REQUEST_EMAIL_ADDR,
         'request_body': request.form['message'].splitlines(),
+        'is_success': is_success,
     })
-    # If failed like SMTPAuthenticationError, return to sorry-page and guide user to send email admin directly
 
 
 # Member-Only: LINE Pay Transactions
