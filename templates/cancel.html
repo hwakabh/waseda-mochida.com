@@ -10,12 +10,12 @@
 
     <h3>キャンセル結果</h3>
       {% if data.result %}
-      キャンセル処理が正常に完了しました。<br>
-      キャンセル対象取引番号 : <br>{{ data.result.transactionId }}<br>
-      キャンセル対象注文番号 : <br>{{ data.result.orderId }}<br>
+        キャンセル処理が正常に完了しました。<br>
+        キャンセル対象取引番号 : <br>{{ data.result.transactionId }}<br>
+        キャンセル対象注文番号 : <br>{{ data.result.orderId }}<br>
       {% else %}
-      キャンセル処理に失敗しました。<br>
-      大変お手数ではございますが、店主清武までご連絡をお願い致します。<br>
+        キャンセル処理に失敗しました。<br>
+        大変お手数ではございますが、店主清武までご連絡をお願い致します。<br>
       {% endif %}
       <br>
       <a href="/member" rel="noopener noreferrer">居酒屋もちだオンラインにもどる</a><br>

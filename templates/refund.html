@@ -11,15 +11,15 @@
     <h3>払い戻し処理結果</h3>
       <p>
         {% if data.result.returnCode == '0000' %}
-        払い戻し処理が正常に完了しました。<br>
-        <br>
-        元取引番号 : {{ data.result.source_transaction_id }}<br>
-        払戻処理番号 : {{ data.result.info.refundTransactionId }}<br>
-        <br>
+          払い戻し処理が正常に完了しました。<br>
+          <br>
+          元取引番号 : {{ data.result.source_transaction_id }}<br>
+          払戻処理番号 : {{ data.result.info.refundTransactionId }}<br>
+          <br>
         {% else %}
-        払い戻し処理に失敗しました。<br>
-        大変お手数ではございますが、店主清武までご連絡をお願い致します。<br>
-        <br>
+          払い戻し処理に失敗しました。<br>
+          大変お手数ではございますが、店主清武までご連絡をお願い致します。<br>
+          <br>
         {% endif %}
         <a href="/member" rel="noopener noreferrer">居酒屋もちだオンラインにもどる</a><br>
       </p>
