@@ -18,6 +18,7 @@ All the Python programs in this sub-directory are expected to run correctly unde
 | --- | --- |
 | OS | 10.15.4 (Catalina) |
 | Python | 3.6.4 with pyenv |
+| pyenv | 1.2.18 |
 | Flask | 1.1.2 |
 
 Run the `pip install -r requirements.txt` to install dependent packages.  
