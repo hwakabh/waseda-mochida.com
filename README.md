@@ -5,7 +5,7 @@ Official Homepages for Waseda Mochida
 Technology stacks  
 
 - Python + Flask
-- Heroku
+- Heroku and its addons
 - LINE Online API v3 and its Python SDK
 
 ***
