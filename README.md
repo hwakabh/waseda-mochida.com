@@ -17,7 +17,7 @@ All the Python programs in this sub-directory are expected to run correctly unde
 | Components | Version |
 | --- | --- |
 | OS | 10.15.4 (Catalina) |
-| Python | 3.6.4 with pyenv |
+| Python | 3.6.4 |
 | pyenv | 1.2.18 |
 | Flask | 1.1.2 |
 
