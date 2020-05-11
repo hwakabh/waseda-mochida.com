@@ -37,7 +37,6 @@ if (LINE_PAY_CHANNEL_ID is None) or (LINE_PAY_CHANNEL_SECRET is None):
     sys.exit(1)
 
 CACHE = {}
-global amount
 
 if 'hwakabh' in gethostname():
     SERVER_URL = 'http://localhost:5000'
