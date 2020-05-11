@@ -25,6 +25,20 @@ SUBJECT = ''
 BODY = ''
 REQUEST_EMAIL_ADDR = ''
 
+PIPELINE = os.environ.get('PIPELINE')
+
+if PIPELINE is None:
+    print('>>> Precheck failed.')
+    print('Environmental variables for heroku pipeline not configured, set PIPELINE first.\n')
+    sys.exit(1)
+
+if PIPELINE == 'local':
+    SERVER_URL = 'http://localhost:5000'
+elif PIPELINE == 'stage':
+    SERVER_URL = 'http://dev-waseda-mochida.herokuapp.com'
+elif PIPELINE == 'production':
+    SERVER_URL = 'https://www.waseda-mochida.com'
+
 # LINE Pay API config and instanciate
 LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
 LINE_PAY_CHANNEL_SECRET = os.environ.get('LINE_PAY_CHANNEL_SECRET')
@@ -37,11 +51,6 @@ if (LINE_PAY_CHANNEL_ID is None) or (LINE_PAY_CHANNEL_SECRET is None):
     sys.exit(1)
 
 CACHE = {}
-
-if 'hwakabh' in gethostname():
-    SERVER_URL = 'http://localhost:5000'
-else:
-    SERVER_URL = 'https://www.waseda-mochida.com'
 
 api = LinePayApi(
     LINE_PAY_CHANNEL_ID,
