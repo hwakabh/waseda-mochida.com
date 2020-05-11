@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import send_from_directory
 from flask import request
+from flask import session
 from linepay import LinePayApi
 
 from socket import gethostname
@@ -15,6 +16,7 @@ import sys
 
 
 app = Flask(__name__)
+app.secret_key = str(uuid.uuid4().hex)
 
 # Email parameters
 FROM_ADDRESS = 'mochida.waseda@gmail.com'
@@ -24,6 +26,21 @@ BCC = os.environ.get('EMAIL_BCC_ADDRESS')
 SUBJECT = ''
 BODY = ''
 REQUEST_EMAIL_ADDR = ''
+
+PIPELINE = os.environ.get('PIPELINE')
+
+if PIPELINE is None:
+    print('>>> Precheck failed.')
+    print('Environmental variables for heroku pipeline not configured, set PIPELINE first.\n')
+    sys.exit(1)
+
+if PIPELINE == 'local':
+    SERVER_URL = 'http://localhost:5000'
+elif PIPELINE == 'stage':
+    SERVER_URL = 'https://dev-waseda-mochida.herokuapp.com'
+elif PIPELINE == 'production':
+    SERVER_URL = 'https://www.waseda-mochida.com'
+
 
 # LINE Pay API config and instanciate
 LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
@@ -35,14 +52,6 @@ if (LINE_PAY_CHANNEL_ID is None) or (LINE_PAY_CHANNEL_SECRET is None):
     print('>>> Precheck failed.')
     print('Environmental variables for LINE API missing, set LINE_PAY_CHANNEL_ID and LINE_PAY_CHANNEL_SECRET first.\n')
     sys.exit(1)
-
-CACHE = {}
-global amount
-
-if 'hwakabh' in gethostname():
-    SERVER_URL = 'http://localhost:5000'
-else:
-    SERVER_URL = 'https://www.waseda-mochida.com'
 
 api = LinePayApi(
     LINE_PAY_CHANNEL_ID,
@@ -163,10 +172,10 @@ def linepay_request():
     print('Order ID: {}'.format(order_id))
     print('Ordered menu: {}'.format(menu))
     print('Purchase amount: {0} {1}'.format(currency, amount))
-    # Set caches
-    CACHE['order_id'] = order_id
-    CACHE['amount'] = amount
-    CACHE['currency'] = currency
+    session['order_id'] = order_id
+    session['amount'] = amount
+    print('\n>>> Session Data: ')
+    print(session)
     # Build request body
     req = {
       'amount': amount,
@@ -210,16 +219,17 @@ def linepay_request():
 # With this function, seller would be confirmed by LINE Pay API
 @app.route('/member/pay/confirm')
 def linepay_confirm():
-    print('\n>>>> Cached data: ')
-    print(CACHE)
+    print('\n>>>> Session data: ')
+    print(session)
     transaction_id = int(request.args.get('transactionId'))
-    CACHE['transaction_id'] = transaction_id
+    # CACHE['transaction_id'] = transaction_id
+    session['transaction_id'] = transaction_id
     print('\n>>> Calling Confirm API with transaction: {}'.format(transaction_id))
     # Python SDK of Confirm API would expects amount as float value
     res = api.confirm(
         transaction_id,
-        float(CACHE.get('amount', 0)),
-        CACHE.get('currency', 'JPY')
+        float(session.get('amount', 0)),
+        session.get('currency', 'JPY')
     )
     print('\n>>> Responce from API ...')
     print(res)
@@ -245,7 +255,6 @@ def linepay_confirm():
 def linepay_refund():
     if request.method == 'POST':
         transaction_id = int(request.form['transaction_id'])
-        CACHE = {}
     else:
         transaction_id = 0
         print('>>> Error with user selection, could not fetch transaction_id')
@@ -254,6 +263,11 @@ def linepay_refund():
     res = api.refund(transaction_id)
     print(res)
     res['source_transaction_id'] = transaction_id
+
+    print('\n>>> Clearing Sessions ...')
+    session.pop('transaction_id', None)
+    session.pop('amount', None)
+
     return render_template('refund.html', data={
         'result': res,
         'is_member_only': True
@@ -268,10 +282,14 @@ def linepay_cancel():
     if res:
         print(res)
         transaction_id = res.get('transactionId')
-        CACHE = {}
     else:
         print('Failed to get response-body from cancelUrl.')
     print('\n>>> Cancellation for transaction : {0} complete.'.format(transaction_id))
+
+    print('\n>>> Clearing Sessions ...')
+    session.pop('transaction_id', None)
+    session.pop('amount', None)
+
     return render_template('cancel.html', data={
         'result': res,
         'is_member_only': True
