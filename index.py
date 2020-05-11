@@ -41,7 +41,6 @@ elif PIPELINE == 'stage':
 elif PIPELINE == 'production':
     SERVER_URL = 'https://www.waseda-mochida.com'
 
-
 # LINE Pay API config and instanciate
 LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
 LINE_PAY_CHANNEL_SECRET = os.environ.get('LINE_PAY_CHANNEL_SECRET')
@@ -166,6 +165,8 @@ def linepay_request():
     else:
         menu = '未選択'
 
+    print('\n>>> Cached data.')
+    print(CACHE)
     order_id = str(uuid.uuid4())
     currency = 'JPY'
     print('\n>>> Requesting to LINE Pay API for transaction reservation.')
