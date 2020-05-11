@@ -37,11 +37,19 @@ if (LINE_PAY_CHANNEL_ID is None) or (LINE_PAY_CHANNEL_SECRET is None):
     sys.exit(1)
 
 CACHE = {}
-global amount
+# global amount
 
-if 'hwakabh' in gethostname():
+PIPELINE = os.environ.get('PIPELINE')
+if PIPELINE is None:
+    print('>>> Precheck failed.')
+    print('Environmental variables for LINE API missing, set PIPELINE first.\n')
+    sys.exit(1)
+
+if PIPELINE == 'local':
     SERVER_URL = 'http://localhost:5000'
-else:
+elif PIPELINE == 'stage':
+    SERVER_URL = 'https://dev-waseda-mochida.herokuapp.com'
+elif PIPELINE == 'production':
     SERVER_URL = 'https://www.waseda-mochida.com'
 
 api = LinePayApi(
