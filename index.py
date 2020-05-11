@@ -35,7 +35,7 @@ if PIPELINE is None:
 if PIPELINE == 'local':
     SERVER_URL = 'http://localhost:5000'
 elif PIPELINE == 'stage':
-    SERVER_URL = 'http://dev-waseda-mochida.herokuapp.com'
+    SERVER_URL = 'https://dev-waseda-mochida.herokuapp.com'
 elif PIPELINE == 'production':
     SERVER_URL = 'https://www.waseda-mochida.com'
 
@@ -165,6 +165,8 @@ def linepay_request():
     else:
         menu = '未選択'
 
+    print('\n>>> Cached data.')
+    print(CACHE)
     order_id = str(uuid.uuid4())
     currency = 'JPY'
     print('\n>>> Requesting to LINE Pay API for transaction reservation.')
