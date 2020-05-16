@@ -7,6 +7,7 @@ Technology stacks
 - Python + Flask
 - Heroku and its addons
 - LINE Online API v3 and its Python SDK
+- Slack integrations with Heroku and Heroku
 
 ***
 
