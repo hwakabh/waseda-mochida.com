@@ -5,6 +5,7 @@ from flask import request
 from linepay import LinePayApi
 
 from socket import gethostname
+from datetime import datetime, timedelta
 import os
 import uuid
 import smtplib
@@ -57,6 +58,13 @@ api = LinePayApi(
     LINE_PAY_CHANNEL_SECRET,
     is_sandbox=LINE_PAY_IS_SANDBOX
 )
+
+
+# Functions to calculate next online event day
+def get_next_thursday(t):
+    day_1 = datetime(2020, 6, 4)
+    offset = 14 - ((t - day_1).days % 14)
+    return t + timedelta(days=offset)
 
 
 @app.route('/')
@@ -141,8 +149,13 @@ def mail():
 # Member-Only: LINE Pay Transactions
 @app.route('/member')
 def member():
+    today = datetime.now()
+    next_event_day = get_next_thursday(t=today)
+
     return render_template('member.html', data={
-        'is_member_only': True
+        'is_member_only': True,
+        'next_month': next_event_day.month,
+        'next_day': next_event_day.day,
     })
 
 
