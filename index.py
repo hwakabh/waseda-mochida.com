@@ -62,7 +62,7 @@ api = LinePayApi(
 
 # Functions to calculate next online event day
 def get_next_thursday(t):
-    day_1 = datetime(2020, 6, 4)
+    day_1 = datetime(2020, 6, 11)
     offset = 14 - ((t - day_1).days % 14)
     return t + timedelta(days=offset)
 
