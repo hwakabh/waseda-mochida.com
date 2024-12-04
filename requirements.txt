@@ -9,6 +9,6 @@ Jinja2==2.11.3
 line-pay==0.1.0
 MarkupSafe==1.1.1
 psycopg2-binary==2.8.4
-requests==2.23.0
+requests==2.32.2
 urllib3==1.25.11
 Werkzeug==1.0.1
