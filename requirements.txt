@@ -6,9 +6,9 @@ gunicorn==23.0.0
 idna==3.10
 itsdangerous==2.2.0
 Jinja2==3.1.4
-line-pay==0.1.0
+line-pay==0.2.0
 MarkupSafe==3.0.2
-psycopg2-binary==2.8.4
-requests==2.23.0
+psycopg2-binary==2.9.10
+requests==2.32.3
 urllib3==2.2.3
 Werkzeug==3.1.3
