@@ -3,7 +3,7 @@ chardet==5.2.0
 click==8.1.7
 Flask==3.1.0
 gunicorn==23.0.0
-idna==2.9
+idna==3.10
 itsdangerous==1.1.0
 Jinja2==2.11.3
 line-pay==0.1.0
