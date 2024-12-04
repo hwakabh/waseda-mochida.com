@@ -17,10 +17,8 @@ All the Python programs in this sub-directory are expected to run correctly unde
 
 | Components | Version |
 | --- | --- |
-| OS | 10.15.4 (Catalina) |
-| Python | 3.6.4 |
-| pyenv | 1.2.18 |
-| Flask | 1.1.2 |
+| OS | macOS 15.1.1 (Sequoia) |
+| pyenv | 2.4.19 (installed via brew) |
 
 Run the `pip install -r requirements.txt` to install dependent packages.  
 If you use `virtualenv`, create your private environment first with `python -m venv venv`, then install dependencies with pip.  
