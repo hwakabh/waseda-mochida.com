@@ -28,7 +28,7 @@ Please also check [its official documentations](https://elements.heroku.com/buil
 
 ## Deployment
 This app is deployed on Heroku PaaS environments with [GitHub Integrations](https://devcenter.heroku.com/articles/github-integration) features of Heroku. \
-Thanks to this features, the application deployment will be automatically updated when we merged any commits to `main` branch. \
+Thanks to this features, the application deployment will be automatically updated when we merged any commits to `main` branch.
 
 This app uses some additional features releated to application deployment
 - SSL Certification (ACM: Automated Certification Manager)
