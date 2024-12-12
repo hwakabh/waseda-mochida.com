@@ -1,52 +1,44 @@
 # waseda-mochida
 
-Official Homepages for Waseda Mochida  
+Official Homepages for Waseda Mochida
 
-Technology stacks  
-
+Technology stacks
 - Python + Flask
 - Heroku and its addons
 - LINE Online API v3 and its Python SDK
 - Slack integrations with Heroku and Heroku
-
-***
+- Mend Renovate (for dependencies updates)
 
 ## Runtimes
-
-All the Python programs in this sub-directory are expected to run correctly under the environments below:  
+All the Python programs in this sub-directory are expected to run correctly under the environments below:
 
 | Components | Version |
 | --- | --- |
 | OS | macOS 15.1.1 (Sequoia) |
 | pyenv | 2.4.19 (installed via brew) |
 
-Run the `pip install -r requirements.txt` to install dependent packages.  
-If you use `virtualenv`, create your private environment first with `python -m venv venv`, then install dependencies with pip.  
+Run the `pip install -r requirements.txt` to install dependent packages for running application. \
+If you use `virtualenv`, we recommend to create your private environment first with `python -m venv venv`, then install dependencies with pip.
 
-***
 
-## Environment
+## Build
+For application deployments in Heroku environment, [`heroku-python-buildpack`](https://github.com/heroku/heroku-buildpack-python) will be used, and all the depenedencies file should be configured in `requirements.txt` by its design. \
+Please also check [its official documentations](https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-python) of `heroku-python-buildpack` for further information.
 
-This app is deployed on Heroku PaaS environments with `Procfile` in this repository.  
-Dependent packages are described in `requirements.txt` and auto-deployment will be run with GitHub and Heroku integrations.  
 
-cf. Heroku CLI configurations  
+## Deployment
+This app is deployed on Heroku PaaS environments with [GitHub Integrations](https://devcenter.heroku.com/articles/github-integration) features of Heroku. \
+Thanks to this features, the application deployment will be automatically updated when we merged any commits to `main` branch. \
 
-```bash
-$ heroku --version
-heroku/7.39.5 darwin-x64 node-v12.16.2
-```
-
-This app uses some features of Heroku.  
-
-- App connection with GitHub/Heroku
-- Automatic Deploy with `master` branch
-- Python buildpack, configured automatically with initial deployment on Heroku
+This app uses some additional features releated to application deployment
 - SSL Certification (ACM: Automated Certification Manager)
-- Custom domain configuration: `www.waseda-mochida.com` with PointDNS
+  - Docs: <https://devcenter.heroku.com/articles/automated-certificate-management>
+- Custom domain configuration: `www.waseda-mochida.com` by Squarespace Domain
+  - Docs: <https://www.squarespace.com>
+  - Formerly known as [Google Domain](http://domains.google)
 
-Some environmental variables should be retrived by `heroku config`.  
-Before runing apps on local environment, it's required to run `heroku config:set VAR_NAME:VAR_VALUE --app waseda-mochida`.  
+Some environmental variables should be retrived by `heroku config`.
+Before runing apps as Heroku Dynos, we need to configure environmental variables with running `heroku config:set VAR_NAME:VAR_VALUE --app waseda-mochida`, or from UI.
 
 | Name | Description | Syntax | Example value |
 | --- | --- | --- | --- |
@@ -55,15 +47,13 @@ Before runing apps on local environment, it's required to run `heroku config:set
 | EMAIL_BCC_ADDRESS | Bcc email address when app user would post from contact form | valid email address | youremailaddress@example.com |
 | EMAIL_GOOGLE_PASSWORD | Google application password for sending email via contact form | 16 digits password | abcdefghijkl |
 
-***
 
-## Installations
+## Local development
+If you'd like to edit this app, for example to modify/add some features, of course you can install this app to your local development environment.
+Since this app requires to run with Python3 and Flask, described in `Runtimes` of this page, you need to install Python3 to your environmet first.
+Also you can use `pyenv`, you might know if you're good at Python.
 
-If you'd like to edit this app, for example to modify/add some features, of course you can install this app to your local development environment.  
-Since this app requires to run with Python3 and Flask, described in `Runtimes` of this page, you need to install Python3 to your environmet first.  
-Also you can use `pyenv`, you might know if you're good at Python.  
-
-Here's the instructions to install this app to your local with `pyenv`.  
+Here is the instructions to install this app to your local with `pyenv`.
 
 ```bash
 # Create your private environment for this app, and activate them
