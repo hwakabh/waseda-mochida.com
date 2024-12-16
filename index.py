@@ -168,7 +168,7 @@ def linepay_request():
     else:
         amount = 0
         print('>>> Error with user selection, none of the amount selected.')
-    
+
     if (amount == 1000) or (amount == 3000):
         menu = '{} 円セット'.format(amount)
     elif amount == 5000:
