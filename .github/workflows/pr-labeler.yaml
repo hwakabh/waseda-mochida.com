@@ -20,4 +20,4 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           sync-labels: true
-          configuration-path: .github/pr-labeler.yaml
+          configuration-path: .github/config/pr-labeler.yaml

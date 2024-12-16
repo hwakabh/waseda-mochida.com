@@ -23,7 +23,7 @@ jobs:
         uses: github/issue-labeler@v3.4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          configuration-path: .github/issue-labeler.yaml
+          configuration-path: .github/config/issue-labeler.yaml
           # case if we have multiple configs
           enable-versioned-regex: 0
           # only checks issue titles
