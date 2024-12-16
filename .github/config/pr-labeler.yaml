@@ -1,0 +1,28 @@
+# File matches
+ci:
+- changed-files:
+  - any-glob-to-any-file: ['.github/**/*']
+- head-branch: ['^ci/']
+
+deploy:
+- changed-files:
+  - any-glob-to-any-file: ['Procfile']
+
+deps:
+- changed-files:
+  - any-glob-to-any-file: ['requirements.txt', '.python-version']
+- head-branch: ['^renovate/']
+
+docs:
+- changed-files:
+  - any-glob-to-any-file: ['**/README.md']
+
+# Branch name matches
+renovate:
+- head-branch: ['^renovate/']
+
+bugs:
+- head-branch: ['^fix/', '^hotfix/']
+
+enhancement:
+- head-branch: ['^feat']
