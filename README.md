@@ -42,10 +42,11 @@ Before runing apps as Heroku Dynos, we need to configure environmental variables
 
 | Name | Description | Syntax | Example value |
 | --- | --- | --- | --- |
-| LINE_PAY_CHANNEL_ID | TokenID for LINE OnlineAPI to execute payment requests | 10 digts numbers | 1234567890 |
-| LINE_PAY_CHANNEL_SECRET | Token Password for confirm accounts with LINE OnlineAPI | 32 digits password | abcdefghijklmnopqrstuvwxyz123456 |
-| EMAIL_BCC_ADDRESS | Bcc email address when app user would post from contact form | valid email address | youremailaddress@example.com |
-| EMAIL_GOOGLE_PASSWORD | Google application password for sending email via contact form | 16 digits password | abcdefghijkl |
+| PIPELINE | String values for determine apps in Heroku pipeline | `production` or `stage` or `local` | `local` |
+| LINE_PAY_CHANNEL_ID | TokenID for LINE OnlineAPI to execute payment requests | 10 digts numbers | `1234567890` |
+| LINE_PAY_CHANNEL_SECRET | Token Password for confirm accounts with LINE OnlineAPI | 32 digits password | `abcdefghijklmnopqrstuvwxyz123456` |
+| EMAIL_BCC_ADDRESS | (Optional) Bcc email address when app user would post from contact form | valid email address | `youremailaddress@example.com` |
+| EMAIL_GOOGLE_PASSWORD | (Optional) Google application password for sending email via contact form | 16 digits password | `abcdefghijkl` |
 
 
 ## Local development
