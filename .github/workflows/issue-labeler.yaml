@@ -1,0 +1,32 @@
+name: Issue Labeler
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - reopened
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  issue_labeler:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Label Issue
+        uses: github/issue-labeler@v3.4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/config/issue-labeler.yaml
+          # case if we have multiple configs
+          enable-versioned-regex: 0
+          # only checks issue titles
+          include-title: 1
+          include-body: 0
+        # https://github.com/github/issue-labeler
