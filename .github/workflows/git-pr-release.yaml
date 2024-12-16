@@ -19,4 +19,4 @@ jobs:
         GIT_PR_RELEASE_BRANCH_PRODUCTION: main
         GIT_PR_RELEASE_BRANCH_STAGING: develop
         GIT_PR_RELEASE_TITLE: "chore(main): release ${{ steps.vars.outputs.branch_name }}"
-        GIT_PR_RELEASE_TEMPLATE: 'config/.git-pr-release-template'
+        GIT_PR_RELEASE_TEMPLATE: '.github/config/.git-pr-release-template'
