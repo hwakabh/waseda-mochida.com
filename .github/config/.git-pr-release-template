@@ -1,4 +1,4 @@
-<%= Release ENV['GIT_PR_RELEASE_TITLE'] %>
+chore(main): release <%= Time.now %>
 Changes:
 <% pull_requests.each do |pr| -%>
 <%=  pr.to_checklist_item %>
