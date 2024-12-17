@@ -1,0 +1,22 @@
+name: Create PR from develop to main
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  gitPrRelease:
+    name: git-pr-release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        fetch-depth: 0
+    - name: git-pr-release
+      uses: bakunyo/git-pr-release-action@master
+      env:
+        TZ: "Asia/Tokyo"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GIT_PR_RELEASE_BRANCH_PRODUCTION: main
+        GIT_PR_RELEASE_BRANCH_STAGING: develop
+        GIT_PR_RELEASE_TITLE: "chore(main): release ${{ steps.vars.outputs.branch_name }}"
+        GIT_PR_RELEASE_TEMPLATE: '.github/config/.git-pr-release-template'

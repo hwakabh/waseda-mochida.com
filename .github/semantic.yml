@@ -8,6 +8,7 @@ types:
   - build
   - chore
   - ci
+  - deploy
   - docs
   - style
   - refactor
