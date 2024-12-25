@@ -4,9 +4,9 @@ Official Homepages for Waseda Mochida
 
 Technology stacks
 - Python + Flask
-- Heroku and its addons
-- LINE Online API v3 and its Python SDK
-- Mend Renovate (for dependencies updates)
+- [Heroku](https://www.heroku.com) and its addons
+- [LINE Online API v3](https://pay.line.me/jp/developers/apis/onlineApis?locale=ja_JP) with several Python packages
+- [Mend Renovate](https://www.mend.io/renovate/) (for dependencies updates)
 
 ## Runtimes
 All the Python programs in this sub-directory are expected to run correctly under the environments below:
