@@ -5,6 +5,10 @@ Official Homepages for Waseda Mochida
 Technology stacks
 - Python + Flask
 - [Heroku](https://www.heroku.com) and its addons
+  - Heroku Pipeline
+  - Review Apps
+  - ACM
+  - TBD: Heroku CI (for testing)
 - [LINE Online API v3](https://pay.line.me/jp/developers/apis/onlineApis?locale=ja_JP) with several Python packages
 - [Mend Renovate](https://www.mend.io/renovate/) (for dependencies updates)
 
