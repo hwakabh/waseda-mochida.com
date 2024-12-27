@@ -1,0 +1,26 @@
+{
+  "name": "waseda-mchoda",
+  "scripts": {},
+  "env": {
+    "PIPELINE": {
+      "required": true
+    },
+    "LINE_PAY_CHANNEL_ID": {
+      "required": true
+    },
+    "LINE_PAY_CHANNEL_SECRET": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
