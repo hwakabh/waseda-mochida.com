@@ -18,6 +18,7 @@ import sys
 app = Flask(__name__)
 
 # Email parameters
+# TODO: Get all from envars
 FROM_ADDRESS = 'mochida.waseda@gmail.com'
 MY_PASSWORD = os.environ.get('EMAIL_GOOGLE_PASSWORD')
 TO_ADDRESS = 'sukekiyoooooi@gmail.com'
