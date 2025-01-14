@@ -12,13 +12,12 @@ import ssl
 import sys
 
 from apps import create_app
-from apps.helpers import get_next_thursday, build_mailbody
+from apps.helpers import get_next_thursday, build_mailbody, generate_qr_code_data
 
 
 app = create_app()
 
 # Email parameters
-# TODO: Get all from envars
 FROM_ADDRESS = 'mochida.waseda@gmail.com'
 MY_PASSWORD = os.environ.get('EMAIL_GOOGLE_PASSWORD')
 TO_ADDRESS = 'sukekiyoooooi@gmail.com'
@@ -26,6 +25,8 @@ BCC = os.environ.get('EMAIL_BCC_ADDRESS')
 SUBJECT = ''
 BODY = ''
 REQUEST_EMAIL_ADDR = ''
+
+LINE_ACCOUNT_URL = 'https://line.me/R/ti/p/%40500xaweq'
 
 # LINE Pay API config and instanciate
 LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
@@ -63,9 +64,13 @@ api = LinePayApi(
 
 @app.route('/')
 def index():
+    # get base64-encoded string and render raw data to <img src="">
+    qr = generate_qr_code_data(url=LINE_ACCOUNT_URL)
+
     return render_template('index.html', data={
         'is_member_only': False,
         'page_from': request.method,
+        'line_qr_code': "data:image/png;base64,{}".format(qr)
     })
 
 
