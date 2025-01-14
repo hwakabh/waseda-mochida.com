@@ -5,15 +5,14 @@ from flask import request
 from flask import jsonify
 from linepay import LinePayApi
 
-from socket import gethostname
-from datetime import datetime, timedelta
+from datetime import datetime
 import os
 import uuid
 import smtplib
-from email.mime.text import MIMEText
-from email.utils import formatdate
 import ssl
 import sys
+
+from helpers import get_next_thursday, build_mailbody
 
 
 app = Flask(__name__)
@@ -62,25 +61,11 @@ api = LinePayApi(
 )
 
 
-# Functions to calculate next online event day
-def get_next_thursday(t):
-    day_1 = datetime(2020, 6, 11)
-    offset = 14 - ((t - day_1).days % 14)
-    return t + timedelta(days=offset)
-
-
 @app.route('/')
 def index():
     return render_template('index.html', data={
         'is_member_only': False,
         'page_from': request.method,
-    })
-
-
-@app.route('/healthz')
-def healthz():
-    return jsonify({
-      'status': 'ok'
     })
 
 
@@ -92,20 +77,15 @@ def favicon():
     )
 
 
+@app.route('/healthz')
+def healthz():
+    return jsonify({
+      'status': 'ok'
+    })
+
+
 @app.route('/mail', methods=['POST'])
 def mail():
-    def build_mailbody(from_addr, to_addr, subject, body):
-        mail = MIMEText(body)
-        mail['From'] = from_addr
-        mail['To'] = to_addr
-        mail['Subject'] = subject
-        mail['Date'] = formatdate()
-        if BCC is not None:
-            mail['Bcc'] = BCC
-        else:
-            mail['Bcc'] = ''
-        return mail
-
     REQUEST_USERNAME = request.form['name']
     REQUEST_EMAIL_ADDR = request.form['email']
     # Add REQUEST_EMAIL_ADDR in BODY as content
@@ -122,7 +102,7 @@ def mail():
     print('message: \n\n{}'.format(BODY))
 
     print('>>> Building email body as draft.')
-    draft = build_mailbody(from_addr=FROM_ADDRESS, to_addr=TO_ADDRESS, subject=SUBJECT, body=BODY)
+    draft = build_mailbody(from_addr=FROM_ADDRESS, to_addr=TO_ADDRESS, subject=SUBJECT, body=BODY, bcc=BCC)
     print(draft)
 
     #context = ssl.create_default_context()
