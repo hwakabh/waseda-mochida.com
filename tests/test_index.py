@@ -16,5 +16,5 @@ def tests_health_status_ok():
 def tests_health_body_ok():
     client = app.test_client()
     ret = client.get('/healthz')
-    exp ={"status": "ok"}
+    exp = {"status": "ok"}
     assert json.loads(ret.data) == exp
