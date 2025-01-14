@@ -1,0 +1,11 @@
+[project]
+name = "waseda-mochida"
+version = "0.1.0"
+description = "The generic MVC with Flask."
+dependencies = [
+    "flask",
+]
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
