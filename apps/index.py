@@ -1,4 +1,3 @@
-from flask import Flask
 from flask import render_template
 from flask import send_from_directory
 from flask import request
@@ -12,10 +11,11 @@ import smtplib
 import ssl
 import sys
 
-from helpers import get_next_thursday, build_mailbody
+from apps import create_app
+from apps.helpers import get_next_thursday, build_mailbody
 
 
-app = Flask(__name__)
+app = create_app()
 
 # Email parameters
 # TODO: Get all from envars
