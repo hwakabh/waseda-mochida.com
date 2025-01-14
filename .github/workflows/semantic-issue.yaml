@@ -1,0 +1,27 @@
+name: Semantic Issue Title
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - reopened
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  semantic-issue:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Issue Title
+        uses: hwakabh/semantic-issue-actions@v0.3.0
+        with:
+          repo: 'hwakabh/waseda-mochida.com'
+          token: ${{ secrets.GITHUB_TOKEN }}
+        # https://github.com/hwakabh/semantic-issue-action
