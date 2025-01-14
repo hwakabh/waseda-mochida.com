@@ -13,9 +13,12 @@ permissions:
   contents: read
 
 jobs:
-  issue_labeler:
+  semantic-issue:
     runs-on: ubuntu-24.04
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Check Issue Title
         uses: hwakabh/semantic-issue-actions@v0.3.0
         with:

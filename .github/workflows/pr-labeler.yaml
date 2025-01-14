@@ -9,7 +9,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  pr_labeler:
+  pr-labeler:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
