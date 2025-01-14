@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import send_from_directory
 from flask import request
+from flask import jsonify
 from linepay import LinePayApi
 
 from socket import gethostname
@@ -73,6 +74,13 @@ def index():
     return render_template('index.html', data={
         'is_member_only': False,
         'page_from': request.method,
+    })
+
+
+@app.route('/healthz')
+def healthz():
+    return jsonify({
+      'status': 'ok'
     })
 
 
