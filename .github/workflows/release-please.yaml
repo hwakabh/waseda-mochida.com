@@ -16,4 +16,4 @@ jobs:
       - uses: googleapis/release-please-action@v4
         with:
           # token: default is ${{ github.token }}
-          release-type: python
+          config-file: '.github/config/release-please-config.json'
