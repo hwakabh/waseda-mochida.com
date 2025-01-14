@@ -1,6 +1,16 @@
 {
   "name": "waseda-mchoda",
   "scripts": {},
+  "environments": {
+    "test": {
+      "buildpacks": [
+        { "url": "heroku/python" }
+      ],
+      "scripts": {
+        "test": "pytest -v -s ."
+      }
+    }
+  },
   "env": {
     "PIPELINE": {
       "required": true
@@ -19,8 +29,6 @@
   },
   "addons": [],
   "buildpacks": [
-    {
-      "url": "heroku/python"
-    }
+    { "url": "heroku/python" }
   ]
 }
