@@ -22,6 +22,7 @@ jobs:
         GIT_PR_RELEASE_BRANCH_PRODUCTION: main
         GIT_PR_RELEASE_BRANCH_STAGING: release
         GIT_PR_RELEASE_TEMPLATE: '.github/config/.git-pr-release-template'
+        GIT_PR_RELEASE_LABELS: 'releases'
 
   git-pr-release-to-develop:
     name: git-pr-release-to-develop
