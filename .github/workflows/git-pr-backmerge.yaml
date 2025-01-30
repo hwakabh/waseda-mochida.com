@@ -1,8 +1,8 @@
-name: Create PR from release to main
+name: Create back-merge PR from release to main
 on:
   push:
     branches:
-      - release
+      - main
 jobs:
   git-pr-release:
     name: git-pr-release
@@ -16,6 +16,6 @@ jobs:
       env:
         TZ: "Asia/Tokyo"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GIT_PR_RELEASE_BRANCH_PRODUCTION: main
+        GIT_PR_RELEASE_BRANCH_PRODUCTION: develop
         GIT_PR_RELEASE_BRANCH_STAGING: release
-        GIT_PR_RELEASE_TEMPLATE: '.github/config/.git-pr-release-template'
+        GIT_PR_RELEASE_TEMPLATE: '.github/config/.git-pr-backmerge-template'
