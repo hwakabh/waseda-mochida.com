@@ -26,9 +26,10 @@ class RedisConfigs(object):
     # https://flask-caching.readthedocs.io/en/latest/#configuring-flask-caching
     CACHE_TYPE            = 'RedisCache'
     CACHE_DEFAULT_TIMEOUT = 300
-    CACHE_REDIS_HOST      = 'localhost'
-    CACHE_REDIS_PORT      = 6379
-
+    CACHE_REDIS_URL       = os.environ.get('REDIS_URL')
+    # CACHE_REDIS_HOST      = os.environ.get('REDIS_URL').split(':')[-2].split('@')[1]
+    # CACHE_REDIS_PORT      = os.environ.get('REDIS_URL').split(':')[-1]
+    # CACHE_REDIS_PASSWORD  = os.environ.get('REDIS_URL').split(':')[-1].split('@')[1]
 
 class AppConfigs(object):
     PIPELINE = os.environ.get('PIPELINE')
