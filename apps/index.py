@@ -19,15 +19,8 @@ from apps.settings import MailConfigs as mail
 
 app = create_app()
 
-# Email parameters
-SUBJECT = ''
-BODY = ''
-REQUEST_EMAIL_ADDR = ''
-
-
 CACHE = {}
 # global amount
-
 
 if config.PIPELINE is None:
     print('>>> Precheck failed.')
@@ -70,16 +63,15 @@ def favicon():
 
 @app.route('/healthz')
 def healthz():
-    return jsonify({
-      'status': 'ok'
-    })
+    return jsonify({'status': 'ok'})
 
 
 @app.route('/mail', methods=['POST'])
 def mail():
+    # Email parameters
     REQUEST_USERNAME = request.form['name']
     REQUEST_EMAIL_ADDR = request.form['email']
-    # Add REQUEST_EMAIL_ADDR in BODY as content
+    SUBJECT = f'[waseda-mochida] Contact from {REQUEST_EMAIL_ADDR}'
     BODY = 'Contact from {0}\n email: {1}\n\n{2}\n{3}\n{4}\n'.format(
         REQUEST_USERNAME,
         REQUEST_EMAIL_ADDR,
