@@ -1,4 +1,4 @@
-chore: back-merge <%= Time.now %>
+chore: back-merge PR <%= Time.now %>
 Changes:
 <% pull_requests.each do |pr| -%>
 <%=  pr.to_checklist_item %>
