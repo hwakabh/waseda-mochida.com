@@ -67,3 +67,17 @@ $ source venv/bin/activate
 # Install dependencies for this app
 $ pip install -r requirement.txt
 ```
+
+## Run apps
+
+```shell
+# for development purpose
+$ FLASK_APP=apps.index:app flask run
+```
+
+```shell
+# same as production commands
+$ gunicorn apps.index:app --log-file -
+```
+
+Then you can access via `http://127.0.0.1:5000/` with your browser.

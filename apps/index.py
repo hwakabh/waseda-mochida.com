@@ -1,9 +1,3 @@
-from flask import render_template
-from flask import send_from_directory
-from flask import request
-from flask import jsonify
-from linepay import LinePayApi
-
 from datetime import datetime
 import os
 import uuid
@@ -11,61 +5,46 @@ import smtplib
 import ssl
 import sys
 
+from flask import render_template
+from flask import send_from_directory
+from flask import request
+from flask import jsonify
+from linepay import LinePayApi
+
 from apps import create_app
 from apps.helpers import get_next_thursday, build_mailbody, generate_qr_code_data
-
+from apps.settings import AppConfigs as config
+from apps.settings import LinePayConfigs as line
+from apps.settings import MailConfigs as mail
 
 app = create_app()
-
-# Email parameters
-FROM_ADDRESS = 'mochida.waseda@gmail.com'
-MY_PASSWORD = os.environ.get('EMAIL_GOOGLE_PASSWORD')
-TO_ADDRESS = 'sukekiyoooooi@gmail.com'
-BCC = os.environ.get('EMAIL_BCC_ADDRESS')
-SUBJECT = ''
-BODY = ''
-REQUEST_EMAIL_ADDR = ''
-
-LINE_ACCOUNT_URL = 'https://line.me/R/ti/p/%40500xaweq'
-
-# LINE Pay API config and instanciate
-LINE_PAY_CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
-LINE_PAY_CHANNEL_SECRET = os.environ.get('LINE_PAY_CHANNEL_SECRET')
-LINE_PAY_IS_SANDBOX = False
-LINE_PAY_SANDBOX_URL = 'https://api-pay.line.me'
-
-if (LINE_PAY_CHANNEL_ID is None) or (LINE_PAY_CHANNEL_SECRET is None):
-    print('>>> Precheck failed.')
-    print('Environmental variables for LINE API missing, set LINE_PAY_CHANNEL_ID and LINE_PAY_CHANNEL_SECRET first.\n')
-    sys.exit(1)
 
 CACHE = {}
 # global amount
 
-PIPELINE = os.environ.get('PIPELINE')
-if PIPELINE is None:
+if config.PIPELINE is None:
     print('>>> Precheck failed.')
-    print('Environmental variables for LINE API missing, set PIPELINE first.\n')
+    print('Environmental variables PIPELINE missing, failed to start app.\n')
     sys.exit(1)
 
-if PIPELINE == 'local':
-    SERVER_URL = 'http://localhost:5000'
-elif PIPELINE == 'stage':
-    SERVER_URL = 'https://dev-waseda-mochida.herokuapp.com'
-elif PIPELINE == 'production':
-    SERVER_URL = 'https://www.waseda-mochida.com'
+
+# LINE Pay API config and instanciate
+if (line.CHANNEL_ID is None) or (line.CHANNEL_SECRET is None):
+    print('>>> Precheck failed.')
+    print('Environmental variables for LINE API missing, set LINE_PAY_CHANNEL_ID and LINE_PAY_CHANNEL_SECRET first.\n')
+    sys.exit(1)
 
 api = LinePayApi(
-    LINE_PAY_CHANNEL_ID,
-    LINE_PAY_CHANNEL_SECRET,
-    is_sandbox=LINE_PAY_IS_SANDBOX
+    line.CHANNEL_ID,
+    line.CHANNEL_SECRET,
+    is_sandbox=line.IS_SANDBOX
 )
 
 
 @app.route('/')
 def index():
     # get base64-encoded string and render raw data to <img src="">
-    qr = generate_qr_code_data(url=LINE_ACCOUNT_URL)
+    qr = generate_qr_code_data(url=line.ACCOUNT_URL)
 
     return render_template('index.html', data={
         'is_member_only': False,
@@ -84,16 +63,15 @@ def favicon():
 
 @app.route('/healthz')
 def healthz():
-    return jsonify({
-      'status': 'ok'
-    })
+    return jsonify({'status': 'ok'})
 
 
 @app.route('/mail', methods=['POST'])
 def mail():
+    # Email parameters
     REQUEST_USERNAME = request.form['name']
     REQUEST_EMAIL_ADDR = request.form['email']
-    # Add REQUEST_EMAIL_ADDR in BODY as content
+    SUBJECT = f'[waseda-mochida] Contact from {REQUEST_EMAIL_ADDR}'
     BODY = 'Contact from {0}\n email: {1}\n\n{2}\n{3}\n{4}\n'.format(
         REQUEST_USERNAME,
         REQUEST_EMAIL_ADDR,
@@ -107,7 +85,7 @@ def mail():
     print('message: \n\n{}'.format(BODY))
 
     print('>>> Building email body as draft.')
-    draft = build_mailbody(from_addr=FROM_ADDRESS, to_addr=TO_ADDRESS, subject=SUBJECT, body=BODY, bcc=BCC)
+    draft = build_mailbody(from_addr=mail.FROM_ADDRESS, to_addr=mail.TO_ADDRESS, subject=SUBJECT, body=BODY, bcc=mail.BCC)
     print(draft)
 
     #context = ssl.create_default_context()
@@ -115,15 +93,15 @@ def mail():
     smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
     try:
         print('>>> Login to Google accounts as administrator ...')
-        smtp.login(FROM_ADDRESS, MY_PASSWORD)
+        smtp.login(mail.FROM_ADDRESS, mail.MY_PASSWORD)
     except smtplib.SMTPAuthenticationError:
         is_success = False
         print('Authentication error occured. Redirected mail.html with sorry-message.')
         smtp.close()
 
     try:
-        print('>>> Sending to email to administrator : {}...'.format(TO_ADDRESS))
-        smtp.sendmail(FROM_ADDRESS, TO_ADDRESS, draft.as_string())
+        print('>>> Sending to email to administrator : {}...'.format(mail.TO_ADDRESS))
+        smtp.sendmail(mail.FROM_ADDRESS, mail.TO_ADDRESS, draft.as_string())
     except:
         print('>>> Failed to send email ...')
         smtp.close()
@@ -196,7 +174,7 @@ def linepay_request():
             {
               'id': 'product-001',
               'name': menu,
-              'imageUrl': '{0}/static/img/return_{1}.jpg'.format(SERVER_URL, amount),
+              'imageUrl': '{0}/static/img/return_{1}.jpg'.format(config.SERVER_URL, amount),
               'quantity': 1,
               'price': amount
             }
