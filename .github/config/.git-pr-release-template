@@ -1,4 +1,4 @@
-chore: Release PR <%= Time.now %>
+chore(main): Release PR <%= Time.now %>
 Changes:
 <% pull_requests.each do |pr| -%>
 <%=  pr.to_checklist_item %>
