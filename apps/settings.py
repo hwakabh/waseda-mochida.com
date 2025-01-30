@@ -6,7 +6,7 @@ class LinePayConfigs(object):
 
     CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
     CHANNEL_SECRET = os.environ.get('LINE_PAY_CHANNEL_SECRET')
-    IS_SANDBOX = False
+    IS_SANDBOX = True
     SANDBOX_URL = 'https://api-pay.line.me'
 
 
@@ -20,6 +20,14 @@ class MailConfigs(object):
     MAIL_PASSWORD         = os.environ.get('BREVO_SMTP_KEY')
     # # default person you can see in the field `from:` in the message
     # MAIL_DEFAULT_SENDER   = 'hrykwkbys1024@gmail.com'
+
+
+class RedisConfigs(object):
+    # https://flask-caching.readthedocs.io/en/latest/#configuring-flask-caching
+    CACHE_TYPE            = 'RedisCache'
+    CACHE_DEFAULT_TIMEOUT = 300
+    CACHE_REDIS_HOST      = 'localhost'
+    CACHE_REDIS_PORT      = 6379
 
 
 class AppConfigs(object):
