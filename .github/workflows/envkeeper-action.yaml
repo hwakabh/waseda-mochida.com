@@ -1,0 +1,17 @@
+name: Purge staled environment
+
+on:
+  schedule:
+    # Runs on 19:00 JST every day, note that cron syntax applied as UTC
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  cleanup-env:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Clean up Environments
+        uses: hwakabh/envkeeper@v0.4.0
+        with:
+          token: ${{ secrets.PAT_CLEANUP }}
+          repo: ${{ github.repository }}
