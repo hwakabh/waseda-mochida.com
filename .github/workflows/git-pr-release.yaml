@@ -1,22 +1,43 @@
-name: Create PR from release to main
+name: Create PRs from release branch
 on:
   push:
     branches:
       - release
 jobs:
-  git-pr-release:
-    name: git-pr-release
-    runs-on: ubuntu-latest
+  git-pr-release-to-main:
+    name: git-pr-release-to-main
+    runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - name: git-pr-release
+        ref: release
+
+    - name: Create Release PR to main
       uses: bakunyo/git-pr-release-action@master
       env:
         TZ: "Asia/Tokyo"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GIT_PR_RELEASE_BRANCH_PRODUCTION: main
         GIT_PR_RELEASE_BRANCH_STAGING: release
-        GIT_PR_RELEASE_TITLE: "chore(main): release ${{ steps.vars.outputs.branch_name }}"
         GIT_PR_RELEASE_TEMPLATE: '.github/config/.git-pr-release-template'
+
+  git-pr-release-to-develop:
+    name: git-pr-release-to-develop
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: release
+
+    - name: Create Back-merge PR to develop
+      uses: bakunyo/git-pr-release-action@master
+      env:
+        TZ: "Asia/Tokyo"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GIT_PR_RELEASE_BRANCH_PRODUCTION: develop
+        GIT_PR_RELEASE_BRANCH_STAGING: release
+        GIT_PR_RELEASE_TEMPLATE: '.github/config/.git-pr-backmerge-template'
