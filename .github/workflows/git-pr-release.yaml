@@ -1,8 +1,8 @@
-name: Create PR from develop to main
+name: Create PR from release to main
 on:
   push:
     branches:
-      - develop
+      - release
 jobs:
   git-pr-release:
     name: git-pr-release
@@ -17,6 +17,6 @@ jobs:
         TZ: "Asia/Tokyo"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GIT_PR_RELEASE_BRANCH_PRODUCTION: main
-        GIT_PR_RELEASE_BRANCH_STAGING: develop
+        GIT_PR_RELEASE_BRANCH_STAGING: release
         GIT_PR_RELEASE_TITLE: "chore(main): release ${{ steps.vars.outputs.branch_name }}"
         GIT_PR_RELEASE_TEMPLATE: '.github/config/.git-pr-release-template'
