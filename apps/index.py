@@ -1,23 +1,23 @@
 from datetime import datetime
 import os
 import uuid
-import smtplib
-import ssl
 import sys
 
 from flask import render_template
 from flask import send_from_directory
 from flask import request
 from flask import jsonify
+from flask_mail import Mail, Message
 from linepay import LinePayApi
 
 from apps import create_app
-from apps.helpers import get_next_thursday, build_mailbody, generate_qr_code_data
+from apps.helpers import get_next_thursday, generate_qr_code_data
 from apps.settings import AppConfigs as config
 from apps.settings import LinePayConfigs as line
-from apps.settings import MailConfigs as mail
 
 app = create_app()
+app.config.from_object('apps.settings.MailConfigs')
+mail = Mail(app)
 
 CACHE = {}
 # global amount
@@ -67,52 +67,39 @@ def healthz():
 
 
 @app.route('/mail', methods=['POST'])
-def mail():
-    # Email parameters
-    REQUEST_USERNAME = request.form['name']
-    REQUEST_EMAIL_ADDR = request.form['email']
-    SUBJECT = f'[waseda-mochida] Contact from {REQUEST_EMAIL_ADDR}'
-    BODY = 'Contact from {0}\n email: {1}\n\n{2}\n{3}\n{4}\n'.format(
-        REQUEST_USERNAME,
-        REQUEST_EMAIL_ADDR,
-        '-' * 10,
-        request.form['message'],
-        '-' * 10
-    )
+def send_mail():
+    msg = Message()
+    # person you can see in the field `from:` in the message
+    # With Brevo, `from` fields looks like `SMTP_UESRNAME_BEFORE_ATMARK@BREVO_ID.brevosend.com`
+    msg.sender = 'hrykwkbys1024@gmail.com'
+    # Person who will get message (to:)
+    msg.recipients = [
+        'hwakabh@icloud.com',
+        'hiro.wakabayashi@hashicorp.com'
+    ]
+    msg.subject = '[waseda-mochida] Contact from {}'.format(request.form.get('email'))
+    msg.body = request.form.get('message')
+
     print('>>> Email sending requested.')
-    print('name: {}'.format(REQUEST_USERNAME))
-    print('email: {}'.format(REQUEST_EMAIL_ADDR))
-    print('message: \n\n{}'.format(BODY))
+    print('- name: {}'.format(request.form.get('name')))
+    print('- email: {}'.format(request.form.get('email')))
+    print('- message: \n{}'.format(request.form.get('message')))
 
-    print('>>> Building email body as draft.')
-    draft = build_mailbody(from_addr=mail.FROM_ADDRESS, to_addr=mail.TO_ADDRESS, subject=SUBJECT, body=BODY, bcc=mail.BCC)
-    print(draft)
-
-    #context = ssl.create_default_context()
     is_success = True
-    smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10)
     try:
-        print('>>> Login to Google accounts as administrator ...')
-        smtp.login(mail.FROM_ADDRESS, mail.MY_PASSWORD)
-    except smtplib.SMTPAuthenticationError:
+        print(f'>>> Sending to email to administrator : {msg.sender}...')
+        mail.send(msg)
+    except Exception as e:
         is_success = False
-        print('Authentication error occured. Redirected mail.html with sorry-message.')
-        smtp.close()
-
-    try:
-        print('>>> Sending to email to administrator : {}...'.format(mail.TO_ADDRESS))
-        smtp.sendmail(mail.FROM_ADDRESS, mail.TO_ADDRESS, draft.as_string())
-    except:
         print('>>> Failed to send email ...')
-        smtp.close()
-    finally:
-        print('>>> Successfully send email.')
-        smtp.close()
+        print(e)
+
+    print('>>> Successfully send email.')
 
     return render_template('mail.html', data={
         'is_member_only': False,
-        'request_name': REQUEST_USERNAME,
-        'request_email': REQUEST_EMAIL_ADDR,
+        'request_name': request.form.get('name'),
+        'request_email': request.form.get('email'),
         'request_body': request.form['message'].splitlines(),
         'is_success': is_success,
     })
