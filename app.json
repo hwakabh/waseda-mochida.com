@@ -30,7 +30,12 @@
       "quantity": 1
     }
   },
-  "addons": [],
+  "addons": [
+    {
+      "plan": "heroku-redis:mini",
+      "as": "REDIS"
+    }
+  ],
   "buildpacks": [
     { "url": "heroku/python" }
   ]
