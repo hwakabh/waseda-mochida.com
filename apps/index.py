@@ -8,6 +8,7 @@ from flask import send_from_directory
 from flask import request
 from flask import jsonify
 from flask_mail import Mail, Message
+from flask_caching import Cache
 from linepay import LinePayApi
 
 from apps import create_app
@@ -19,7 +20,9 @@ app = create_app()
 app.config.from_object('apps.settings.MailConfigs')
 mail = Mail(app)
 
-CACHE = {}
+app.config.from_object('apps.settings.RedisConfigs')
+cache = Cache(app)
+
 # global amount
 
 if config.PIPELINE is None:
@@ -144,9 +147,9 @@ def linepay_request():
     print('Ordered menu: {}'.format(menu))
     print('Purchase amount: {0} {1}'.format(currency, amount))
     # Set caches
-    CACHE['order_id'] = order_id
-    CACHE['amount'] = amount
-    CACHE['currency'] = currency
+    cache.set('order_id', order_id)
+    cache.set('amount', amount)
+    cache.set('currency', currency)
     # Build request body
     req = {
       'amount': amount,
@@ -169,8 +172,8 @@ def linepay_request():
         }
       ],
       'redirectUrls': {
-        'confirmUrl': SERVER_URL + '/member/pay/confirm',
-        'cancelUrl': SERVER_URL + '/member/pay/cancel'
+        'confirmUrl': config.SERVER_URL + '/member/pay/confirm',
+        'cancelUrl': config.SERVER_URL + '/member/pay/cancel'
       }
     }
     print('\n>>> Calling Request API ... req-body: ')
@@ -180,6 +183,7 @@ def linepay_request():
     print(res)
     res['menu'] = menu
     res['amount'] = amount
+
     return render_template('request.html', data={
         'result': res,
         'is_member_only': True
@@ -191,15 +195,18 @@ def linepay_request():
 @app.route('/member/pay/confirm')
 def linepay_confirm():
     print('\n>>>> Cached data: ')
-    print(CACHE)
+    print(cache.get('amount'))
+    print(cache.get('currency'))
+    print(cache.get('order_id'))
+
     transaction_id = int(request.args.get('transactionId'))
-    CACHE['transaction_id'] = transaction_id
+    cache.set('transaction_id', transaction_id)
     print('\n>>> Calling Confirm API with transaction: {}'.format(transaction_id))
     # Python SDK of Confirm API would expects amount as float value
     res = api.confirm(
         transaction_id,
-        float(CACHE.get('amount', 0)),
-        CACHE.get('currency', 'JPY')
+        float(cache.get('amount')),
+        cache.get('currency')
     )
     print('\n>>> Responce from API ...')
     print(res)
@@ -225,7 +232,7 @@ def linepay_confirm():
 def linepay_refund():
     if request.method == 'POST':
         transaction_id = int(request.form['transaction_id'])
-        CACHE = {}
+        cache.clear()
     else:
         transaction_id = 0
         print('>>> Error with user selection, could not fetch transaction_id')
@@ -248,7 +255,7 @@ def linepay_cancel():
     if res:
         print(res)
         transaction_id = res.get('transactionId')
-        CACHE = {}
+        cache.clear()
     else:
         print('Failed to get response-body from cancelUrl.')
     print('\n>>> Cancellation for transaction : {0} complete.'.format(transaction_id))

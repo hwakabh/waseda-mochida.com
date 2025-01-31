@@ -1,9 +1,11 @@
 blinker==1.9.0
+cachelib==0.9.0
 certifi==2024.12.14
 chardet==5.2.0
 charset-normalizer==3.4.1
 click==8.1.8
 Flask==3.1.0
+Flask-Caching==2.3.0
 Flask-Mail==0.10.0
 gunicorn==23.0.0
 idna==3.10
@@ -18,6 +20,7 @@ pluggy==1.5.0
 psycopg2-binary==2.9.10
 pytest==8.3.4
 qrcode==8.0
+redis==5.2.1
 requests==2.32.3
 urllib3==2.3.0
 Werkzeug==3.1.3
