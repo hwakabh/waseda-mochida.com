@@ -26,7 +26,7 @@ class RedisConfigs(object):
     # https://flask-caching.readthedocs.io/en/latest/#configuring-flask-caching
     CACHE_TYPE            = 'RedisCache'
     CACHE_DEFAULT_TIMEOUT = 300
-    CACHE_REDIS_URL       = os.environ.get('REDIS_URL')
+    CACHE_REDIS_URL       = os.environ.get('REDIS_URL') + '?ssl_cert_reqs=none'
     # CACHE_REDIS_HOST      = os.environ.get('REDIS_URL').split(':')[-2].split('@')[1]
     # CACHE_REDIS_PORT      = os.environ.get('REDIS_URL').split(':')[-1]
     # CACHE_REDIS_PASSWORD  = os.environ.get('REDIS_URL').split(':')[-1].split('@')[1]
