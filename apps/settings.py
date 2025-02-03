@@ -6,7 +6,7 @@ class LinePayConfigs(object):
 
     CHANNEL_ID = os.environ.get('LINE_PAY_CHANNEL_ID')
     CHANNEL_SECRET = os.environ.get('LINE_PAY_CHANNEL_SECRET')
-    IS_SANDBOX = False
+    IS_SANDBOX = True
     SANDBOX_URL = 'https://api-pay.line.me'
 
 
@@ -21,6 +21,10 @@ class MailConfigs(object):
     # # default person you can see in the field `from:` in the message
     # MAIL_DEFAULT_SENDER   = 'hrykwkbys1024@gmail.com'
 
+    RECAPTCHA_USE_SSL = False
+    RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_SITE_KEY')
+    RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
+
 
 class AppConfigs(object):
     PIPELINE = os.environ.get('PIPELINE')
@@ -31,3 +35,19 @@ class AppConfigs(object):
         SERVER_URL = 'https://dev-waseda-mochida.herokuapp.com'
     elif PIPELINE == 'production':
         SERVER_URL = 'https://www.waseda-mochida.com'
+
+
+class RedisConfigs(object):
+    # https://flask-caching.readthedocs.io/en/latest/#configuring-flask-caching
+    CACHE_TYPE            = 'RedisCache'
+    CACHE_DEFAULT_TIMEOUT = 300
+    CACHE_REDIS_URL       = os.environ.get('REDIS_URL')
+
+    if AppConfigs.PIPELINE != 'local':
+        CACHE_REDIS_URL += '?ssl_cert_reqs=none'
+
+
+class DatabaseConfigs(object):
+    # https://docs.sqlalchemy.org/en/20/dialects/postgresql.html#module-sqlalchemy.dialects.postgresql.psycopg2
+    SQLALCHEMY_DATABASE_URI         = os.environ.get('DATABASE_URL').replace('postgres://', 'postgresql+psycopg2://')
+    SQLALCHEMY_TRACK_MODIFICATIONS  = False

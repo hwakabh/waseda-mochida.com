@@ -71,6 +71,19 @@ $ pip install -r requirement.txt
 ## Run apps
 
 ```shell
+# Database setup
+$ docker run -d --name postgres -p 5432:5432 -e POSTGRESQL_PASSWORD=postgres  bitnami/postgresql:latest
+
+$ docker exec -u root -it postgres psql -U postgres -c 'CREATE DATABASE mochida;'
+$ export DATABASE_URL='postgres://postgres:postgres@0.0.0.0:5432/mochida'
+
+# Cache setup
+$ docker run -d --name redis -p 6379:6379 -e ALLOW_EMPTY_PASSWORD=yes bitnami/redis:latest
+$ export REDIS_URL='redis://0.0.0.0:6379'
+```
+
+
+```shell
 # for development purpose
 $ FLASK_APP=apps.index:app flask run
 ```

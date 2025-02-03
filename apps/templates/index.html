@@ -380,15 +380,20 @@
       ご予約の場合は、日時と人数を記載の上、<br class="br-sp">ご連絡お願いいたします。<br>
     </p>
     <form method="post" action="/mail">
+      {{ contactForm.csrf_token }}
       <div class="row">
-        <div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="お名前" /></div>
-        <div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="メールアドレス" /></div>
+        <div class="col-6 col-12-mobile">{{ contactForm.name.label }} {{ contactForm.name(placeholder="山田 太郎") }} </div>
+        <div class="col-6 col-12-mobile">{{ contactForm.email.label }} {{ contactForm.email(placeholder="yourname@example.com") }}</div>
         <div class="col-12">
-          <textarea name="message" placeholder="ご予約・お問い合わせ内容"></textarea>
+          {{ contactForm.message.label }} {{ contactForm.message(placeholder="ご予約・お問い合わせ内容") }}
         </div>
         <div class="col-12">
-          <input type="submit" value="送信" />
+          {{ contactForm.recaptcha }}
         </div>
+        <div class="col-12">
+          {{ contactForm.submit }}
+        </div>
+
       </div>
     </form>
   </div>
