@@ -19,6 +19,7 @@ from apps.models import OrderHistory
 from apps.helpers import get_next_thursday, generate_qr_code_data
 from apps.settings import AppConfigs as config
 from apps.settings import LinePayConfigs as line
+from apps.forms import ContactForm
 
 app = create_app()
 app.config.from_object('apps.settings.DatabaseConfigs')
@@ -57,11 +58,13 @@ def index():
     # get base64-encoded string and render raw data to <img src="">
     qr = generate_qr_code_data(url=line.ACCOUNT_URL)
 
+    form = ContactForm()
+
     return render_template('index.html', data={
         'is_member_only': False,
         'page_from': request.method,
         'line_qr_code': "data:image/png;base64,{}".format(qr)
-    })
+    }, contactForm=form)
 
 
 @app.route('/favicon.ico')
@@ -79,40 +82,44 @@ def healthz():
 
 @app.route('/mail', methods=['POST'])
 def send_mail():
-    msg = Message()
-    # person you can see in the field `from:` in the message
-    # With Brevo, `from` fields looks like `SMTP_UESRNAME_BEFORE_ATMARK@BREVO_ID.brevosend.com`
-    msg.sender = 'hrykwkbys1024@gmail.com'
-    # Person who will get message (to:)
-    msg.recipients = [
-        'hwakabh@icloud.com',
-        'hiro.wakabayashi@hashicorp.com'
-    ]
-    msg.subject = '[waseda-mochida] Contact from {}'.format(request.form.get('email'))
-    msg.body = request.form.get('message')
+    if request.form.get('g-recaptcha-response'):
+        msg = Message()
+        # person you can see in the field `from:` in the message
+        # With Brevo, `from` fields looks like `SMTP_UESRNAME_BEFORE_ATMARK@BREVO_ID.brevosend.com`
+        msg.sender = 'hrykwkbys1024@gmail.com'
+        # Person who will get message (to:)
+        msg.recipients = [
+            'hwakabh@icloud.com',
+            'hiro.wakabayashi@hashicorp.com'
+        ]
+        msg.subject = '[waseda-mochida] Contact from {}'.format(request.form.get('email'))
+        msg.body = request.form.get('message')
 
-    print('>>> Email sending requested.')
-    print('- name: {}'.format(request.form.get('name')))
-    print('- email: {}'.format(request.form.get('email')))
-    print('- message: \n{}'.format(request.form.get('message')))
+        print('>>> Email sending requested.')
+        print('- name: {}'.format(request.form.get('name')))
+        print('- email: {}'.format(request.form.get('email')))
+        print('- message: \n{}'.format(request.form.get('message')))
 
-    is_success = True
-    try:
-        print(f'>>> Sending to email to administrator : {msg.sender}...')
-        mail.send(msg)
-    except Exception as e:
+        is_success = True
+        try:
+            print(f'>>> Sending to email to administrator : {msg.sender}...')
+            mail.send(msg)
+            print('>>> Successfully send email.')
+        except Exception as e:
+            is_success = False
+            print('>>> Failed to send email ...')
+            print(e)
+
+    else:
+        print('Bot user detected...')
         is_success = False
-        print('>>> Failed to send email ...')
-        print(e)
-
-    print('>>> Successfully send email.')
 
     return render_template('mail.html', data={
         'is_member_only': False,
+        'is_success': is_success,
         'request_name': request.form.get('name'),
         'request_email': request.form.get('email'),
         'request_body': request.form['message'].splitlines(),
-        'is_success': is_success,
     })
 
 

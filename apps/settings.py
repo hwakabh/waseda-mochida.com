@@ -21,6 +21,10 @@ class MailConfigs(object):
     # # default person you can see in the field `from:` in the message
     # MAIL_DEFAULT_SENDER   = 'hrykwkbys1024@gmail.com'
 
+    RECAPTCHA_USE_SSL = False
+    RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTURE_SITEKEY')
+    RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTURE_SECRETKEY')
+
 
 class AppConfigs(object):
     PIPELINE = os.environ.get('PIPELINE')
