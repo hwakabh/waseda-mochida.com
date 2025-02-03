@@ -12,11 +12,19 @@ from flask_caching import Cache
 from linepay import LinePayApi
 
 from apps import create_app
+from apps.database import init_db
+from apps.models import OrderHistory
+
+
 from apps.helpers import get_next_thursday, generate_qr_code_data
 from apps.settings import AppConfigs as config
 from apps.settings import LinePayConfigs as line
 
 app = create_app()
+app.config.from_object('apps.settings.DatabaseConfigs')
+# Invoke init_app() as function `init_db`
+db = init_db(app=app)
+
 app.config.from_object('apps.settings.MailConfigs')
 mail = Mail(app)
 
@@ -146,6 +154,7 @@ def linepay_request():
     print('Order ID: {}'.format(order_id))
     print('Ordered menu: {}'.format(menu))
     print('Purchase amount: {0} {1}'.format(currency, amount))
+
     # Set caches
     cache.set('order_id', order_id)
     cache.set('amount', amount)
@@ -183,6 +192,15 @@ def linepay_request():
     print(res)
     res['menu'] = menu
     res['amount'] = amount
+
+    # Store history to database
+    db.session.add(OrderHistory(
+        order_type='purchase',
+        order_id=order_id,
+        amount=amount,
+        menu=menu
+    ))
+    db.session.commit()
 
     return render_template('request.html', data={
         'result': res,
@@ -241,6 +259,16 @@ def linepay_refund():
     res = api.refund(transaction_id)
     print(res)
     res['source_transaction_id'] = transaction_id
+
+    # Store history to database
+    db.session.add(OrderHistory(
+        order_type='refund',
+        order_id=order_id,
+        amount=amount,
+        menu=men
+    ))
+    db.session.commit()
+
     return render_template('refund.html', data={
         'result': res,
         'is_member_only': True

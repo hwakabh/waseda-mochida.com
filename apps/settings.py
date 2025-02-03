@@ -22,12 +22,6 @@ class MailConfigs(object):
     # MAIL_DEFAULT_SENDER   = 'hrykwkbys1024@gmail.com'
 
 
-class RedisConfigs(object):
-    # https://flask-caching.readthedocs.io/en/latest/#configuring-flask-caching
-    CACHE_TYPE            = 'RedisCache'
-    CACHE_DEFAULT_TIMEOUT = 300
-    CACHE_REDIS_URL       = os.environ.get('REDIS_URL') + '?ssl_cert_reqs=none'
-
 class AppConfigs(object):
     PIPELINE = os.environ.get('PIPELINE')
 
@@ -37,3 +31,19 @@ class AppConfigs(object):
         SERVER_URL = 'https://dev-waseda-mochida.herokuapp.com'
     elif PIPELINE == 'production':
         SERVER_URL = 'https://www.waseda-mochida.com'
+
+
+class RedisConfigs(object):
+    # https://flask-caching.readthedocs.io/en/latest/#configuring-flask-caching
+    CACHE_TYPE            = 'RedisCache'
+    CACHE_DEFAULT_TIMEOUT = 300
+    CACHE_REDIS_URL       = os.environ.get('REDIS_URL')
+
+    if AppConfigs.PIPELINE != 'local':
+        CACHE_REDIS_URL += '?ssl_cert_reqs=none'
+
+
+class DatabaseConfigs(object):
+    # https://docs.sqlalchemy.org/en/20/dialects/postgresql.html#module-sqlalchemy.dialects.postgresql.psycopg2
+    SQLALCHEMY_DATABASE_URI         = os.environ.get('DATABASE_URL').replace('postgres://', 'postgresql+psycopg2://')
+    SQLALCHEMY_TRACK_MODIFICATIONS  = False
