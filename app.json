@@ -24,10 +24,10 @@
     "BREVO_SMTP_KEY": {
       "required": true
     },
-    "RECAPTURE_SITE_KEY": {
+    "RECAPTCHA_SITE_KEY": {
       "required": false
     },
-    "RECAPTURE_SECRET_KEY": {
+    "RECAPTCHA_SECRET_KEY": {
       "required": false
     }
   },
