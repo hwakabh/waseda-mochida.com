@@ -22,8 +22,8 @@ class MailConfigs(object):
     # MAIL_DEFAULT_SENDER   = 'hrykwkbys1024@gmail.com'
 
     RECAPTCHA_USE_SSL = False
-    RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTURE_SITEKEY')
-    RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTURE_SECRETKEY')
+    RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTURE_SITE_KEY')
+    RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTURE_SECRET_KEY')
 
 
 class AppConfigs(object):
