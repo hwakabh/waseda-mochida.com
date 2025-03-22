@@ -13,7 +13,7 @@ gunicorn==23.0.0
 idna==3.10
 iniconfig==2.0.0
 itsdangerous==2.2.0
-Jinja2==3.1.5
+Jinja2==3.1.6
 line-pay==0.2.0
 MarkupSafe==3.0.2
 packaging==24.2
@@ -24,7 +24,7 @@ pytest==8.3.5
 qrcode==8.0
 redis==5.2.1
 requests==2.32.3
-SQLAlchemy==2.0.38
+SQLAlchemy==2.0.39
 typing_extensions==4.12.2
 urllib3==2.3.0
 Werkzeug==3.1.3
