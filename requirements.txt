@@ -17,7 +17,7 @@ Jinja2==3.1.6
 line-pay==0.2.0
 MarkupSafe==3.0.2
 packaging==25.0
-pillow==11.2.1
+pillow==11.3.0
 pluggy==1.6.0
 psycopg2-binary==2.9.10
 pytest==8.4.1
@@ -25,7 +25,7 @@ qrcode==8.2
 redis==6.2.0
 requests==2.32.4
 SQLAlchemy==2.0.41
-typing_extensions==4.14.0
+typing_extensions==4.14.1
 urllib3==2.5.0
 Werkzeug==3.1.3
 WTForms==3.2.1
