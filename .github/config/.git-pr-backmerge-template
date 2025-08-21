@@ -1,7 +1,0 @@
-chore(develop): Backmerge PR <%= Time.now %>
-Changes:
-<% pull_requests.each do |pr| -%>
-<%=  pr.to_checklist_item %>
-<% end -%>
-
-This PR has been automatically updated by [git-pr-release](https://github.com/x-motemen/git-pr-release).
