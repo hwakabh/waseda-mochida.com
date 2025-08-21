@@ -1,5 +1,4 @@
 # waseda-mochida
-
 Official Homepages for Waseda Mochida
 
 Technology stacks
@@ -9,19 +8,10 @@ Technology stacks
   - Review Apps (for deployments of PR Environment)
   - Heroku CI (for testing)
   - ACM
+  - Heroku Postgres
+  - Heroku Key-Value Store
 - [LINE Online API v3](https://pay.line.me/jp/developers/apis/onlineApis?locale=ja_JP) with several Python packages
 - [Mend Renovate](https://www.mend.io/renovate/) (for dependencies updates)
-
-## Runtimes
-All the Python programs in this sub-directory are expected to run correctly under the environments below:
-
-| Components | Version |
-| --- | --- |
-| OS | macOS 15.1.1 (Sequoia) |
-| pyenv | 2.4.19 (installed via brew) |
-
-Run the `pip install -r requirements.txt` to install dependent packages for running application. \
-If you use `virtualenv`, we recommend to create your private environment first with `python -m venv venv`, then install dependencies with pip.
 
 
 ## Build
@@ -53,8 +43,10 @@ Before runing apps as Heroku Dynos, we need to configure environmental variables
 
 
 ## Local development
-If you'd like to edit this app, for example to modify/add some features, of course you can install this app to your local development environment.
-Since this app requires to run with Python3 and Flask, described in `Runtimes` of this page, you need to install Python3 to your environmet first.
+Run the `pip install -r requirements.txt` to install dependent packages for running application. \
+If you use `virtualenv`, we recommend to create your private environment first with `python -m venv venv`, then install dependencies with pip.
+
+Since this app requires to run with Python3 and Flask, you need to install Python3 to your environmet first.
 Also you can use `pyenv`, you might know if you're good at Python.
 
 Here is the instructions to install this app to your local with `pyenv`.
