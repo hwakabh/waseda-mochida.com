@@ -9,6 +9,6 @@
     ":disableDependencyDashboard"
   ],
   "labels": ["deps", "renovate"],
-  "baseBranches": ["develop"],
+  "baseBranches": ["main"],
   "rangeStrategy": "bump"
 }
