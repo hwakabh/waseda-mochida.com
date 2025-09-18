@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.0...v0.3.1) (2025-09-18)
+
+
+### Miscellaneous Chores
+
+* **deps:** update actions/labeler action to v6 ([3bd289a](https://github.com/hwakabh/waseda-mochida.com/commit/3bd289aabbef878dfde945c8949f71f7343106d9))
+
 ## [0.3.0](https://github.com/hwakabh/waseda-mochida.com/compare/v0.2.0...v0.3.0) (2025-09-18)
 
 
