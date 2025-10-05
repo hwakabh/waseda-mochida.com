@@ -1,9 +1,9 @@
 blinker==1.9.0
 cachelib==0.13.0
-certifi==2025.8.3
+certifi==2025.10.5
 chardet==5.2.0
 charset-normalizer==3.4.3
-click==8.2.1
+click==8.3.0
 Flask==3.1.2
 Flask-Caching==2.3.1
 Flask-Mail==0.10.0
@@ -15,7 +15,7 @@ iniconfig==2.1.0
 itsdangerous==2.2.0
 Jinja2==3.1.6
 line-pay==0.2.0
-MarkupSafe==3.0.2
+MarkupSafe==3.0.3
 packaging==25.0
 pillow==11.3.0
 pluggy==1.6.0
