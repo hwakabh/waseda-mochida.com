@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.3](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.2...v0.3.3) (2025-10-15)
+
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([5097039](https://github.com/hwakabh/waseda-mochida.com/commit/5097039406cc98c881da5212ff6bc991f4f5c0dd))
+* **deps:** update all non-major dependencies ([27d33f0](https://github.com/hwakabh/waseda-mochida.com/commit/27d33f0233b7976c423933189d94202e87472e4c))
+
 ## [0.3.2](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.1...v0.3.2) (2025-10-06)
 
 
