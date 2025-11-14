@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.4](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.3...v0.3.4) (2025-11-14)
+
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([9d2bd9c](https://github.com/hwakabh/waseda-mochida.com/commit/9d2bd9c0f8fd1e5604e3ba21c780aae4f3939da9))
+* **deps:** update dependency pillow to v12 ([9c93dbb](https://github.com/hwakabh/waseda-mochida.com/commit/9c93dbb7407a020c083cd046a87e29f69e4e8c56))
+* **deps:** update dependency redis to v7 ([b1a87c5](https://github.com/hwakabh/waseda-mochida.com/commit/b1a87c5dccfecf734c2b7416e7cb454e44d039ef))
+
 ## [0.3.3](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.2...v0.3.3) (2025-10-15)
 
 
