@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.5](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.4...v0.3.5) (2025-11-17)
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency click to v8.3.1 ([0d4381d](https://github.com/hwakabh/waseda-mochida.com/commit/0d4381dfadfa78d33ee57643b93dc589be0f2759))
+* **deps:** update dependency click to v8.3.1 ([60afada](https://github.com/hwakabh/waseda-mochida.com/commit/60afada3b290e4514f7af57b1f44e1e0f5b56693))
+
 ## [0.3.4](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.3...v0.3.4) (2025-11-16)
 
 
