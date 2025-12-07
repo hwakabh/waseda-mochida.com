@@ -14,7 +14,7 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       # https://github.com/technote-space/pr-commit-body-action/tree/main
       - name: Pull Request Body
