@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.6](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.5...v0.3.6) (2025-12-07)
+
+
+### Miscellaneous Chores
+
+* **deps:** update actions/checkout action to v6 ([58f9727](https://github.com/hwakabh/waseda-mochida.com/commit/58f9727e9dff0b36b9e5d7cfc83b20ca8f971721))
+* **deps:** update actions/checkout action to v6 ([4dbfc1b](https://github.com/hwakabh/waseda-mochida.com/commit/4dbfc1b738c8111c4b88b63d98b27b340abef492))
+* **deps:** update all non-major dependencies ([c147e7f](https://github.com/hwakabh/waseda-mochida.com/commit/c147e7fce4da0127fb40139d4241115356901e01))
+* **deps:** update all non-major dependencies ([6f7af5f](https://github.com/hwakabh/waseda-mochida.com/commit/6f7af5f8a25cab27f7ac2e4272169a2c43a2a388))
+
 ## [0.3.5](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.4...v0.3.5) (2025-11-17)
 
 
