@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.8](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.7...v0.3.8) (2026-01-05)
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency certifi to v2026 ([e8d1452](https://github.com/hwakabh/waseda-mochida.com/commit/e8d1452adfa6c0fa1af5f9bbeec6c8ae566516d3))
+* **deps:** update hwakabh/semantic-issue-action action to v0.6.3 ([57022d2](https://github.com/hwakabh/waseda-mochida.com/commit/57022d275a1dba2a33c69f8adf9563fabcf003ba))
+
 ## [0.3.7](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.6...v0.3.7) (2026-01-04)
 
 
