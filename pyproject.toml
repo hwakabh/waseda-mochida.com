@@ -1,6 +1,6 @@
 [project]
 name = "waseda-mochida"
-version = "0.3.7"
+version = "0.3.8"
 description = "The generic MVC with Flask."
 dependencies = [
     "flask",
