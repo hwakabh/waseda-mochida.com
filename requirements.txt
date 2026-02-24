@@ -16,7 +16,7 @@ itsdangerous==2.2.0
 Jinja2==3.1.6
 line-pay==0.2.0
 MarkupSafe==3.0.3
-packaging==25.0
+packaging==26.0
 pillow==12.1.1
 pluggy==1.6.0
 psycopg2-binary==2.9.11
