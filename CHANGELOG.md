@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.3.10](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.9...v0.3.10) (2026-02-24)
+
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([427d396](https://github.com/hwakabh/waseda-mochida.com/commit/427d396bf015fcb432cb680a7897d2180a3b6a38))
+* **deps:** update all non-major dependencies ([a4b32ac](https://github.com/hwakabh/waseda-mochida.com/commit/a4b32ac303ffe6b7b04935f47fe2e2ca001b2516))
+* **deps:** update dependency chardet to v6 ([7d48c91](https://github.com/hwakabh/waseda-mochida.com/commit/7d48c919af87bc5eba68838bca482ab1a154070c))
+* **deps:** update dependency chardet to v6 ([f084db1](https://github.com/hwakabh/waseda-mochida.com/commit/f084db169c3d1671838aaee5895523aca0a9c36a))
+* **deps:** update dependency gunicorn to v25 ([389d65f](https://github.com/hwakabh/waseda-mochida.com/commit/389d65fe84a8835bfbfd0f168848b5b72a25405a))
+* **deps:** update dependency gunicorn to v25 ([085db1f](https://github.com/hwakabh/waseda-mochida.com/commit/085db1fa5c34cae8fbc1fcc6870562a6dc56c77c))
+* **deps:** update dependency packaging to v26 ([2c250bb](https://github.com/hwakabh/waseda-mochida.com/commit/2c250bbd97190cfe8b237316ee382ba2d052411e))
+* **deps:** update dependency packaging to v26 ([a076c54](https://github.com/hwakabh/waseda-mochida.com/commit/a076c5479d4947263086ba6f0a002ce8489ceb16))
+
 ## [0.3.9](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.8...v0.3.9) (2026-01-12)
 
 
