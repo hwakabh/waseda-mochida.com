@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.11](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.10...v0.3.11) (2026-03-22)
+
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([d2c4f53](https://github.com/hwakabh/waseda-mochida.com/commit/d2c4f53f9556fc9dc2e68fccc727017dcdb937dc))
+* **deps:** update all non-major dependencies ([8ef7c11](https://github.com/hwakabh/waseda-mochida.com/commit/8ef7c1117f332c16910dbf230d73564a1680ac65))
+* **deps:** update dependency chardet to v7 ([c864a0b](https://github.com/hwakabh/waseda-mochida.com/commit/c864a0b367ae7105c355d7e1a7bf89b789c70459))
+* **deps:** update dependency chardet to v7 ([8a05f19](https://github.com/hwakabh/waseda-mochida.com/commit/8a05f1963f95af7c5df57a6de0280486a0b62111))
+
 ## [0.3.10](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.9...v0.3.10) (2026-02-24)
 
 
