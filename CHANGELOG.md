@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.12](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.11...v0.3.12) (2026-07-13)
+
+
+### Documentation
+
+* added archival notes ([5626f30](https://github.com/hwakabh/waseda-mochida.com/commit/5626f30902a0bab831b82579ac282dc16c55017b))
+
 ## [0.3.11](https://github.com/hwakabh/waseda-mochida.com/compare/v0.3.10...v0.3.11) (2026-03-22)
 
 
