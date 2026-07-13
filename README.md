@@ -1,4 +1,7 @@
 # waseda-mochida
+THIS PROJECT HAS BEEN ARCHIVED WITH MIGRATED FROM GITHUB. FOR FUTURE MAINTENANCE, 
+SEE https://gitlab.com/hwakabh-dev/waseda-mochida-com
+
 Official Homepages for Waseda Mochida
 
 Technology stacks
